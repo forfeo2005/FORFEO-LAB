@@ -1,46 +1,109 @@
-/* assets/js/main.js - Version Corrigée pour Web3Forms */
+/* assets/js/main.js - Système de Gestion Ambassadeurs */
 
+// --- 1. CONFIGURATION DES ACCÈS (Ta "Base de données") ---
+// Format : "identifiant": "mot_de_passe"
+const AMBASSADEURS_DB = {
+    "admin": "forfeo2025",       // Compte de test
+    "julie.m": "paris2026",      // Exemple ambassadeur 1
+    "marc.d": "quebec123",       // Exemple ambassadeur 2
+    "sophie.l": "lovesushi"      // Exemple ambassadeur 3
+};
+
+// --- 2. GESTION DE LA CONNEXION (Login) ---
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 1. Initialisation de la validation Bootstrap
-    const forms = document.querySelectorAll('.needs-validation');
-    Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-            if (!form.checkValidity()) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-        }, false);
-    });
+    // A. Si on est sur la page de login
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value.toLowerCase().trim();
+            const pass = document.getElementById('password').value;
+            const errorDiv = document.getElementById('loginError');
 
-    // 2. Gestion de l'envoi du formulaire (AJAX)
+            // Vérification
+            if (AMBASSADEURS_DB[user] && AMBASSADEURS_DB[user] === pass) {
+                // Succès : On sauvegarde la session
+                localStorage.setItem('forfeo_user', user);
+                localStorage.setItem('forfeo_logged_in', 'true');
+                // Redirection
+                window.location.href = "dashboard.html";
+            } else {
+                // Échec
+                errorDiv.classList.remove('d-none');
+                // Animation de secousse
+                loginForm.classList.add('shake');
+                setTimeout(() => loginForm.classList.remove('shake'), 500);
+            }
+        });
+        return; // On arrête ici pour la page login
+    }
+
+    // B. PROTECTION DES PAGES (Dashboard & Sondages)
+    // Liste des pages protégées
+    const protectedPages = ['dashboard.html', 'survey-experience.html', 'survey-qualite.html', 'survey-satisfaction.html'];
+    const currentPage = window.location.pathname.split("/").pop();
+
+    if (protectedPages.includes(currentPage)) {
+        const isLoggedIn = localStorage.getItem('forfeo_logged_in');
+        if (!isLoggedIn) {
+            // Si pas connecté, on éjecte vers le login
+            window.location.href = "login.html";
+            return;
+        }
+    }
+
+    // C. AUTO-REMPLISSAGE DU NOM (Intelligence)
+    // Si on est connecté, on remplit automatiquement le champ "Nom" des formulaires
+    const currentUser = localStorage.getItem('forfeo_user');
+    const nameFields = document.querySelectorAll('input[name="nom_ambassadeur"]');
+    
+    if (currentUser && nameFields.length > 0) {
+        nameFields.forEach(field => {
+            // On met l'identifiant en majuscule comme nom (ex: JULIE.M)
+            // Tu pourrais aussi avoir une autre liste pour les noms complets si tu veux
+            field.value = currentUser.toUpperCase();
+            field.setAttribute('readonly', true); // On empêche la modification pour être sûr
+            field.classList.add('bg-light'); // Visuel gris pour montrer que c'est auto
+        });
+    }
+
+    // --- 3. GESTION DES FORMULAIRES (Code existant Web3Forms) ---
     const surveyForm = document.getElementById('surveyForm');
     
     if (surveyForm) {
+        // Validation Bootstrap standard
         surveyForm.addEventListener('submit', function(e) {
             e.preventDefault(); // On bloque l'envoi classique
             
-            // Si le formulaire n'est pas valide visuellement, on arrête
             if (!surveyForm.checkValidity()) {
-                // On scrolle vers la première erreur
+                e.stopPropagation();
+                surveyForm.classList.add('was-validated');
+                // Scroll vers la première erreur
                 const firstInvalid = surveyForm.querySelector(':invalid');
                 if(firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 return;
             }
 
-            // Changement du bouton pour montrer le chargement
+            // Bouton chargement
             const submitBtn = surveyForm.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Envoi...';
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Envoi...';
             submitBtn.disabled = true;
 
-            // Récupération des données sécurisée
+            // Préparation des données
             const formData = new FormData(surveyForm);
+            
+            // AJOUT INTELLIGENT : On force l'ajout du nom de l'utilisateur connecté
+            // au cas où le champ serait vide ou manipulé
+            if(currentUser) {
+                formData.set('nom_ambassadeur', currentUser.toUpperCase());
+            }
+
             const object = Object.fromEntries(formData);
             const json = JSON.stringify(object);
 
-            // Envoi vers Web3Forms
+            // Envoi Web3Forms
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 headers: {
@@ -52,58 +115,41 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(async (response) => {
                 let jsonResponse = await response.json();
                 if (response.status == 200) {
-                    // SUCCÈS : Redirection
                     window.location.href = "confirmation.html";
                 } else {
-                    // ERREUR API
-                    console.error(response);
-                    showErrorAlert(jsonResponse.message || "Une erreur technique est survenue.");
-                    resetButton(submitBtn, originalBtnText);
+                    alert("Erreur: " + jsonResponse.message);
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
                 }
             })
             .catch(error => {
-                // ERREUR RÉSEAU
-                console.error(error);
-                showErrorAlert("Problème de connexion. Vérifiez votre internet.");
-                resetButton(submitBtn, originalBtnText);
+                console.log(error);
+                alert("Erreur de connexion.");
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
             });
+        });
+    }
+
+    // D. BOUTON DÉCONNEXION
+    const logoutBtn = document.getElementById('logoutBtn');
+    if(logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('forfeo_user');
+            localStorage.removeItem('forfeo_logged_in');
+            window.location.href = "login.html";
         });
     }
 });
 
-// Fonction pour remettre le bouton à l'état normal
-function resetButton(btn, text) {
-    btn.innerHTML = text;
-    btn.disabled = false;
+// Animation CSS pour l'erreur de login (à ajouter dans style.css si tu veux, sinon optionnel)
+/* .shake { animation: shake 0.5s; }
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
 }
-
-// Fonction pour afficher l'alerte rose (comme sur ta capture)
-function showErrorAlert(message) {
-    // Supprime l'alerte existante s'il y en a une
-    const existingAlert = document.querySelector('.alert-fixed-top');
-    if(existingAlert) existingAlert.remove();
-
-    const alertDiv = document.createElement('div');
-    alertDiv.className = 'alert alert-danger alert-dismissible fade show alert-fixed-top';
-    alertDiv.style.position = 'fixed';
-    alertDiv.style.top = '20px';
-    alertDiv.style.left = '50%';
-    alertDiv.style.transform = 'translateX(-50%)';
-    alertDiv.style.zIndex = '9999';
-    alertDiv.style.width = '90%';
-    alertDiv.style.maxWidth = '500px';
-    alertDiv.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-    
-    alertDiv.innerHTML = `
-        <i class="bi bi-exclamation-triangle-fill me-2"></i>
-        <strong>Erreur :</strong> ${message}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    `;
-
-    document.body.appendChild(alertDiv);
-    
-    // Auto-hide après 5 secondes
-    setTimeout(() => {
-        alertDiv.remove();
-    }, 5000);
-}
+*/
