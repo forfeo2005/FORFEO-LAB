@@ -4,35 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORFEO LAB - Portail Ambassadeurs</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        @keyframes flashPulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .btn-flash {
+            background: linear-gradient(45deg, #2563eb, #06b6d4, #2563eb);
+            background-size: 200% 200%;
+            color: white;
+            border: none;
+            font-weight: 800;
+            animation: gradientMove 3s ease infinite, flashPulse 2s infinite;
+            transition: all 0.3s;
+        }
+        .btn-flash:hover { transform: scale(1.05); color: white; }
+        .hero-animate { animation: float 6s ease-in-out infinite; }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+    </style>
 </head>
 <body>
     <div class="main-container">
         <nav class="navbar navbar-expand-lg navbar-forfeo">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <i class="bi bi-stars"></i> FORFEO LAB
-                </a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <a class="navbar-brand" href="index.html"><i class="bi bi-stars"></i> FORFEO LAB</a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto gap-2">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard.html">Tableau de bord</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://isow.forfeo.com" target="_blank">
-                                Site principal <i class="bi bi-box-arrow-up-right ms-1 small"></i>
-                            </a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard.html">Tableau de bord</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://isow.forfeo.com" target="_blank">Site principal</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,24 +53,14 @@
         <section class="py-5 text-center mt-5">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-9">
-                        <span class="badge bg-white text-primary border border-primary-subtle rounded-pill px-3 py-2 mb-4 shadow-sm">
-                            ✨ Espace Ambassadeur Officiel
-                        </span>
-                        
-                        <h1 class="display-4 mb-3 hero-title">
-                            Vivez l'expérience Forfeo en VIP
-                        </h1>
-                        
-                        <p class="lead text-muted mb-4 px-md-5">
-                            Rejoignez notre cercle d'élite. Testez gratuitement les meilleures adresses du Québec en échange de votre expertise.
-                        </p>
-
+                    <div class="col-lg-9 hero-animate">
+                        <span class="badge bg-white text-primary border border-primary-subtle rounded-pill px-3 py-2 mb-4 shadow-sm">✨ Espace Ambassadeur Officiel</span>
+                        <h1 class="display-4 mb-3 hero-title">Vivez l'expérience Forfeo en VIP</h1>
+                        <p class="lead text-muted mb-4 px-md-5">Rejoignez notre cercle d'élite. Testez gratuitement les meilleures adresses du Québec.</p>
                         <div class="d-flex justify-content-center align-items-center gap-3 flex-column flex-md-row mb-5">
                             <a href="candidature.html" class="btn btn-flash btn-lg px-5 py-3 rounded-pill shadow-lg text-decoration-none">
-                                <i class="bi bi-star-fill me-2"></i>Devenir Ambassadeur
+                                <i class="bi bi-star-fill me-2"></i> Devenir Ambassadeur
                             </a>
-                            
                             <a href="dashboard.html" class="btn btn-link text-decoration-none text-muted mt-2 mt-md-0">
                                 Déjà membre ? Accéder au portail <i class="bi bi-arrow-right"></i>
                             </a>
@@ -74,44 +76,30 @@
                     <div class="col-md-4">
                         <div class="card card-forfeo h-100 p-4 cursor-pointer" onclick="window.location='survey-qualite.html'">
                             <div class="card-body text-center">
-                                <div class="card-icon">
-                                    <i class="bi bi-clipboard-data"></i>
-                                </div>
+                                <div class="card-icon"><i class="bi bi-clipboard-data"></i></div>
                                 <h3 class="h4 fw-bold mb-3">Évaluer</h3>
                                 <p class="text-muted mb-4">Analysez objectivement la qualité des services lors de vos visites mystères.</p>
-                                <button class="btn btn-sm btn-link text-decoration-none fw-bold">
-                                    Commencer <i class="bi bi-arrow-right ms-1"></i>
-                                </button>
+                                <button class="btn btn-sm btn-link text-decoration-none fw-bold">Commencer <i class="bi bi-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
-                    
                     <div class="col-md-4">
                         <div class="card card-forfeo h-100 p-4 cursor-pointer" onclick="window.location='survey-experience.html'">
                             <div class="card-body text-center">
-                                <div class="card-icon">
-                                    <i class="bi bi-pencil-square"></i>
-                                </div>
+                                <div class="card-icon"><i class="bi bi-pencil-square"></i></div>
                                 <h3 class="h4 fw-bold mb-3">Documenter</h3>
                                 <p class="text-muted mb-4">Remplissez des rapports détaillés et ajoutez vos photos via notre interface.</p>
-                                <button class="btn btn-sm btn-link text-decoration-none fw-bold">
-                                    Rédiger <i class="bi bi-arrow-right ms-1"></i>
-                                </button>
+                                <button class="btn btn-sm btn-link text-decoration-none fw-bold">Rédiger <i class="bi bi-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
-                    
                     <div class="col-md-4">
                         <div class="card card-forfeo h-100 p-4 cursor-pointer" onclick="window.location='survey-satisfaction.html'">
                             <div class="card-body text-center">
-                                <div class="card-icon">
-                                    <i class="bi bi-graph-up-arrow"></i>
-                                </div>
+                                <div class="card-icon"><i class="bi bi-graph-up-arrow"></i></div>
                                 <h3 class="h4 fw-bold mb-3">Améliorer</h3>
                                 <p class="text-muted mb-4">Vos retours impactent directement l'excellence de l'écosystème Forfeo.</p>
-                                <button class="btn btn-sm btn-link text-decoration-none fw-bold">
-                                    Commencer <i class="bi bi-arrow-right ms-1"></i>
-                                </button>
+                                <button class="btn btn-sm btn-link text-decoration-none fw-bold">Commencer <i class="bi bi-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -120,15 +108,12 @@
         </section>
 
         <footer class="footer-forfeo text-center">
-            <div class="container">
-                <p class="mb-2 fw-semibold text-dark">&copy; 2025 FORFEO LAB</p>
-            </div>
+            <div class="container"><p class="mb-2 fw-semibold text-dark">&copy; 2025 FORFEO LAB</p></div>
         </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
-    
     <script src="assets/js/forfy.js"></script>
 </body>
 </html>
