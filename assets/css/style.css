@@ -1,39 +1,42 @@
 /* assets/css/style.css */
 :root {
-    /* Couleurs Tendances 2025 - Palette Aurora */
-    --primary-color: #6366f1; /* Indigo vibrant */
-    --secondary-color: #d946ef; /* Fuchsia moderne */
-    --text-dark: #1e293b;
-    --text-light: #64748b;
-    --bg-light: #f8fafc;
+    /* Palette "Neo Blue 2025" */
+    --primary-color: #2563eb; /* Bleu Royal vibrant */
+    --secondary-color: #06b6d4; /* Cyan électrique */
+    --accent-color: #3b82f6; /* Bleu Azur */
     
-    /* Dégradés */
-    --brand-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #d946ef 100%);
-    --hover-gradient: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+    --text-dark: #0f172a; /* Bleu nuit très sombre (plus moderne que le noir) */
+    --text-muted: #475569; /* Gris bleuté */
     
-    /* Ombres douces (Soft UI) */
-    --shadow-sm: 0 4px 6px -1px rgba(99, 102, 241, 0.1);
-    --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
-    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+    /* Dégradés Océaniques */
+    --brand-gradient: linear-gradient(135deg, #2563eb 0%, #0ea5e9 50%, #06b6d4 100%);
+    --hover-gradient: linear-gradient(135deg, #1d4ed8 0%, #0284c7 100%);
+    --surface-gradient: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(240, 249, 255, 0.9) 100%);
+    
+    /* Ombres bleutées (Glow) */
+    --shadow-sm: 0 4px 6px -1px rgba(37, 99, 235, 0.1);
+    --shadow-card: 0 10px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(37, 99, 235, 0.1);
+    --shadow-glow: 0 0 20px rgba(6, 182, 212, 0.4);
 }
 
 body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: var(--bg-light);
     color: var(--text-dark);
-    /* Fond avec effet subtil */
+    line-height: 1.6;
+    background-color: #f0f9ff; /* Fond bleu très pâle */
+    /* Fond atmosphérique bleu */
     background-image: 
-        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
-        radial-gradient(at 100% 0%, rgba(217, 70, 239, 0.08) 0px, transparent 50%);
+        radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%);
     background-attachment: fixed;
 }
 
-/* --- Navigation Glassmorphism --- */
+/* --- Navigation Glassmorphism Bleu --- */
 .navbar-forfeo {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -58,50 +61,55 @@ body {
 }
 
 .nav-link:hover, .nav-link.active {
-    background: rgba(99, 102, 241, 0.08);
+    background: rgba(37, 99, 235, 0.1); /* Fond bleu léger au survol */
     color: var(--primary-color) !important;
 }
 
-/* --- Cartes Modernes --- */
+/* --- Cartes Modernes "Ice Blue" --- */
 .card-forfeo {
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--surface-gradient);
     border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 24px;
     box-shadow: var(--shadow-card);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
+    position: relative;
 }
 
+/* Effet de survol sur les cartes */
 .card-forfeo:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -5px rgba(37, 99, 235, 0.2);
+    border-color: rgba(14, 165, 233, 0.3);
 }
 
 .card-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(217, 70, 239, 0.1) 100%);
-    border-radius: 18px;
+    width: 64px;
+    height: 64px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.75rem;
+    font-size: 1.8rem;
     color: var(--primary-color);
     margin: 0 auto 1.5rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .card-forfeo:hover .card-icon {
     background: var(--brand-gradient);
     color: white;
-    transform: scale(1.1) rotate(-3deg);
+    transform: rotate(-5deg) scale(1.1);
+    box-shadow: var(--shadow-glow);
 }
 
-/* --- Boutons Tendances --- */
+/* --- Boutons "Electric Blue" --- */
 .btn {
     border-radius: 50px;
     padding: 0.8rem 1.8rem;
     font-weight: 600;
+    letter-spacing: 0.3px;
     transition: all 0.3s ease;
 }
 
@@ -109,13 +117,13 @@ body {
     background: var(--brand-gradient);
     border: none;
     color: white;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
 }
 
 .btn-forfeo-primary:hover {
     background: var(--hover-gradient);
     transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
     color: white;
 }
 
@@ -128,28 +136,30 @@ body {
 .btn-forfeo-outline:hover {
     border-color: var(--primary-color);
     color: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* --- Formulaires --- */
-.form-control, .form-select {
-    border-radius: 12px;
-    padding: 0.8rem 1rem;
-    border: 2px solid #f1f5f9;
-    background-color: #f8fafc;
-    transition: all 0.2s;
-}
-
-.form-control:focus, .form-select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
     background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Hero Section & Typo --- */
+.hero-title {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.text-muted {
+    color: var(--text-muted) !important;
 }
 
 /* Footer */
 .footer-forfeo {
     margin-top: 5rem;
     padding: 3rem 0;
-    border-top: 1px solid rgba(0,0,0,0.05);
-    color: var(--text-light);
+    border-top: 1px solid rgba(37, 99, 235, 0.1);
+    color: var(--text-muted);
 }
+
+/* Utilitaires */
+.cursor-pointer { cursor: pointer; }
