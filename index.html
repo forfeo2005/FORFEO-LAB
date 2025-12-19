@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        .cursor-pointer { cursor: pointer; }
+    </style>
 </head>
 <body>
     <div class="main-container">
@@ -67,37 +71,40 @@
             <div class="container">
                 <div class="row g-4">
                     <div class="col-md-4">
-                        <div class="card card-forfeo h-100 p-4 border-0">
+                        <div class="card card-forfeo h-100 p-4 border-0 cursor-pointer" onclick="window.location='survey-qualite.html'">
                             <div class="card-body text-center">
                                 <div class="card-icon">
                                     <i class="bi bi-clipboard-data"></i>
                                 </div>
                                 <h3 class="h4 fw-bold mb-3">Évaluer</h3>
                                 <p class="text-muted">Analysez objectivement la qualité des services lors de vos visites mystères.</p>
+                                <button class="btn btn-sm btn-link text-decoration-none mt-2">Commencer <i class="bi bi-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
                     
                     <div class="col-md-4">
-                        <div class="card card-forfeo h-100 p-4 border-0">
+                        <div class="card card-forfeo h-100 p-4 border-0 cursor-pointer" onclick="window.location='survey-experience.html'">
                             <div class="card-body text-center">
                                 <div class="card-icon">
                                     <i class="bi bi-pencil-square"></i>
                                 </div>
                                 <h3 class="h4 fw-bold mb-3">Documenter</h3>
                                 <p class="text-muted">Remplissez des rapports détaillés via notre interface optimisée.</p>
+                                <button class="btn btn-sm btn-link text-decoration-none mt-2">Rédiger <i class="bi bi-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
                     
                     <div class="col-md-4">
-                        <div class="card card-forfeo h-100 p-4 border-0">
+                        <div class="card card-forfeo h-100 p-4 border-0 cursor-pointer" onclick="window.location='survey-satisfaction.html'">
                             <div class="card-body text-center">
                                 <div class="card-icon">
                                     <i class="bi bi-graph-up-arrow"></i>
                                 </div>
                                 <h3 class="h4 fw-bold mb-3">Améliorer</h3>
                                 <p class="text-muted">Vos retours impactent directement l'excellence de l'écosystème.</p>
+                                <button class="btn btn-sm btn-link text-decoration-none mt-2">Simuler <i class="bi bi-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
