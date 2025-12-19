@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sondage satisfaction client - FORFEO LAB">
+    <title>Sondage satisfaction - FORFEO LAB</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-forfeo">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="bi bi-star-fill"></i> FORFEO LAB
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">Tableau de bord</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://isow.forfeo.com" target="_blank">Site principal</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Section du formulaire -->
+        <section class="content-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <!-- En-tête -->
+                        <div class="text-center mb-4">
+                            <h1 class="mb-3">
+                                <i class="bi bi-emoji-smile"></i> Sondage satisfaction client
+                            </h1>
+                            <p class="lead">
+                                Simulez l'expérience client et évaluez le niveau de satisfaction global
+                            </p>
+                        </div>
+
+                        <!-- Formulaire -->
+                        <form class="form-forfeo needs-validation" novalidate>
+                            <!-- Champ caché pour Web3Forms -->
+                            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                            <input type="hidden" name="subject" value="Nouveau sondage satisfaction - FORFEO LAB">
+                            <input type="hidden" name="redirect" value="confirmation.html">
+
+                            <!-- Informations de base -->
+                            <h3 class="mb-4">
+                                <i class="bi bi-info-circle"></i> Informations de base
+                            </h3>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="nom_ambassadeur" class="form-label">Nom de l'ambassadeur *</label>
+                                    <input type="text" class="form-control" id="nom_ambassadeur" name="nom_ambassadeur" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez entrer votre nom.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="nom_entreprise" class="form-label">Nom de l'entreprise *</label>
+                                    <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez entrer le nom de l'entreprise.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Évaluation de la satisfaction -->
+                            <h3 class="mb-4 mt-5">
+                                <i class="bi bi-graph-up"></i> Évaluation de la satisfaction
+                            </h3>
+
+                            <!-- Niveau de satisfaction client simulé -->
+                            <div class="mb-4">
+                                <label for="niveau_satisfaction" class="form-label fw-bold">
+                                    Niveau de satisfaction client simulé *
+                                </label>
+                                <select class="form-select" id="niveau_satisfaction" name="niveau_satisfaction" required>
+                                    <option value="">Sélectionnez un niveau</option>
+                                    <option value="Très insatisfait">Très insatisfait</option>
+                                    <option value="Insatisfait">Insatisfait</option>
+                                    <option value="Neutre">Neutre</option>
+                                    <option value="Satisfait">Satisfait</option>
+                                    <option value="Très satisfait">Très satisfait</option>
+                                </select>
+                                <small class="text-muted">
+                                    En vous mettant dans la peau d'un client, quel serait votre niveau de satisfaction ?
+                                </small>
+                                <div class="invalid-feedback">
+                                    Veuillez sélectionner un niveau de satisfaction.
+                                </div>
+                            </div>
+
+                            <!-- Fluidité de la réservation -->
+                            <div class="mb-4">
+                                <label for="fluidite_reservation" class="form-label fw-bold">
+                                    Fluidité de la réservation *
+                                </label>
+                                <select class="form-select" id="fluidite_reservation" name="fluidite_reservation" required>
+                                    <option value="">Sélectionnez une évaluation</option>
+                                    <option value="Très difficile">Très difficile</option>
+                                    <option value="Difficile">Difficile</option>
+                                    <option value="Acceptable">Acceptable</option>
+                                    <option value="Fluide">Fluide</option>
+                                    <option value="Très fluide">Très fluide</option>
+                                </select>
+                                <small class="text-muted">
+                                    Comment évaluez-vous la facilité du processus de réservation ?
+                                </small>
+                                <div class="invalid-feedback">
+                                    Veuillez évaluer la fluidité de la réservation.
+                                </div>
+                            </div>
+
+                            <!-- Clarté de l'offre -->
+                            <div class="mb-4">
+                                <label for="clarte_offre" class="form-label fw-bold">
+                                    Clarté de l'offre *
+                                </label>
+                                <select class="form-select" id="clarte_offre" name="clarte_offre" required>
+                                    <option value="">Sélectionnez une évaluation</option>
+                                    <option value="Très confuse">Très confuse</option>
+                                    <option value="Confuse">Confuse</option>
+                                    <option value="Acceptable">Acceptable</option>
+                                    <option value="Claire">Claire</option>
+                                    <option value="Très claire">Très claire</option>
+                                </select>
+                                <small class="text-muted">
+                                    L'offre et ses conditions étaient-elles clairement présentées ?
+                                </small>
+                                <div class="invalid-feedback">
+                                    Veuillez évaluer la clarté de l'offre.
+                                </div>
+                            </div>
+
+                            <!-- Expérience globale -->
+                            <div class="mb-4">
+                                <label for="experience_globale" class="form-label fw-bold">
+                                    Expérience globale *
+                                </label>
+                                <select class="form-select" id="experience_globale" name="experience_globale" required>
+                                    <option value="">Sélectionnez une évaluation</option>
+                                    <option value="Très décevante">Très décevante</option>
+                                    <option value="Décevante">Décevante</option>
+                                    <option value="Correcte">Correcte</option>
+                                    <option value="Bonne">Bonne</option>
+                                    <option value="Excellente">Excellente</option>
+                                </select>
+                                <small class="text-muted">
+                                    Comment qualifieriez-vous l'expérience dans son ensemble ?
+                                </small>
+                                <div class="invalid-feedback">
+                                    Veuillez évaluer l'expérience globale.
+                                </div>
+                            </div>
+
+                            <!-- Note finale -->
+                            <div class="mb-4">
+                                <label for="note_finale" class="form-label fw-bold">
+                                    Note finale sur 10 *
+                                </label>
+                                <input type="number" class="form-control" id="note_finale" name="note_finale" 
+                                       min="0" max="10" step="0.5" required>
+                                <small class="text-muted">
+                                    Attribuez une note globale entre 0 et 10 (ex: 8.5)
+                                </small>
+                                <div class="invalid-feedback">
+                                    Veuillez entrer une note entre 0 et 10.
+                                </div>
+                            </div>
+
+                            <!-- Commentaire libre -->
+                            <h3 class="mb-4 mt-5">
+                                <i class="bi bi-chat-left-text"></i> Commentaire libre
+                            </h3>
+
+                            <div class="mb-4">
+                                <label for="commentaire_libre" class="form-label">
+                                    Commentaire libre (optionnel)
+                                </label>
+                                <textarea class="form-control" id="commentaire_libre" name="commentaire_libre" rows="5" 
+                                          placeholder="Partagez vos impressions, suggestions ou observations supplémentaires..."></textarea>
+                                <small class="text-muted">
+                                    Utilisez cet espace pour partager tout élément qui pourrait enrichir votre évaluation.
+                                </small>
+                            </div>
+
+                            <!-- Recommandations -->
+                            <div class="alert alert-info alert-forfeo">
+                                <h5>
+                                    <i class="bi bi-lightbulb"></i> Conseils pour une évaluation objective
+                                </h5>
+                                <ul class="mb-0">
+                                    <li>Mettez-vous réellement dans la peau d'un client</li>
+                                    <li>Considérez tous les points de contact du parcours client</li>
+                                    <li>Soyez honnête et constructif dans vos observations</li>
+                                    <li>Identifiez les points d'amélioration concrets</li>
+                                </ul>
+                            </div>
+
+                            <!-- Boutons -->
+                            <div class="text-center mt-5">
+                                <button type="submit" class="btn btn-forfeo-primary btn-lg me-3">
+                                    <i class="bi bi-send"></i> Soumettre le sondage
+                                </button>
+                                <a href="dashboard.html" class="btn btn-forfeo-outline btn-lg">
+                                    <i class="bi bi-x-circle"></i> Annuler
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer-forfeo mt-5">
+            <div class="container text-center">
+                <p>
+                    &copy; 2024 FORFEO LAB - Tous droits réservés | 
+                    <a href="https://isow.forfeo.com" target="_blank">Site principal Forfeo</a>
+                </p>
+                <p class="mt-2">
+                    <small>Plateforme destinée aux ambassadeurs-testeurs officiels</small>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript personnalisé -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

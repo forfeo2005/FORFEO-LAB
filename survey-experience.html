@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rapport d'expérience - FORFEO LAB">
+    <title>Rapport d'expérience - FORFEO LAB</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-forfeo">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <i class="bi bi-star-fill"></i> FORFEO LAB
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.html">Tableau de bord</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://isow.forfeo.com" target="_blank">Site principal</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Section du formulaire -->
+        <section class="content-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <!-- En-tête -->
+                        <div class="text-center mb-4">
+                            <h1 class="mb-3">
+                                <i class="bi bi-file-earmark-text"></i> Rapport d'expérience
+                            </h1>
+                            <p class="lead">
+                                Documentez votre visite et partagez vos observations détaillées
+                            </p>
+                        </div>
+
+                        <!-- Formulaire -->
+                        <form class="form-forfeo needs-validation" novalidate>
+                            <!-- Champ caché pour Web3Forms -->
+                            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                            <input type="hidden" name="subject" value="Nouveau rapport d'expérience - FORFEO LAB">
+                            <input type="hidden" name="redirect" value="confirmation.html">
+
+                            <!-- Informations de l'ambassadeur -->
+                            <h3 class="mb-4">
+                                <i class="bi bi-person"></i> Informations de l'ambassadeur
+                            </h3>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="nom_ambassadeur" class="form-label">Nom de l'ambassadeur *</label>
+                                    <input type="text" class="form-control" id="nom_ambassadeur" name="nom_ambassadeur" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez entrer votre nom.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="region" class="form-label">Région *</label>
+                                    <select class="form-select" id="region" name="region" required>
+                                        <option value="">Sélectionnez une région</option>
+                                        <option value="Montréal">Montréal</option>
+                                        <option value="Québec">Québec</option>
+                                        <option value="Gatineau">Gatineau</option>
+                                        <option value="Sherbrooke">Sherbrooke</option>
+                                        <option value="Trois-Rivières">Trois-Rivières</option>
+                                        <option value="Saguenay">Saguenay</option>
+                                        <option value="Autre">Autre</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Veuillez sélectionner une région.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Informations sur l'entreprise -->
+                            <h3 class="mb-4 mt-5">
+                                <i class="bi bi-building"></i> Informations sur l'entreprise
+                            </h3>
+
+                            <div class="row mb-3">
+                                <div class="col-md-8">
+                                    <label for="nom_entreprise" class="form-label">Nom de l'entreprise visitée *</label>
+                                    <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez entrer le nom de l'entreprise.
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="date_visite" class="form-label">Date de la visite *</label>
+                                    <input type="date" class="form-control" id="date_visite" name="date_visite" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez sélectionner la date.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="type_experience" class="form-label">Type d'expérience *</label>
+                                <select class="form-select" id="type_experience" name="type_experience" required>
+                                    <option value="">Sélectionnez un type</option>
+                                    <option value="Restaurant">Restaurant</option>
+                                    <option value="Hôtel">Hôtel</option>
+                                    <option value="Spa">Spa</option>
+                                    <option value="Activité">Activité</option>
+                                    <option value="Autre">Autre</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Veuillez sélectionner le type d'expérience.
+                                </div>
+                            </div>
+
+                            <!-- Évaluation de l'expérience -->
+                            <h3 class="mb-4 mt-5">
+                                <i class="bi bi-clipboard-check"></i> Évaluation de l'expérience
+                            </h3>
+
+                            <div class="mb-3">
+                                <label for="description_generale" class="form-label">Description générale de l'expérience *</label>
+                                <textarea class="form-control" id="description_generale" name="description_generale" rows="4" 
+                                          placeholder="Décrivez votre expérience globale..." required></textarea>
+                                <div class="invalid-feedback">
+                                    Veuillez décrire l'expérience.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="points_forts" class="form-label">Points forts observés *</label>
+                                <textarea class="form-control" id="points_forts" name="points_forts" rows="3" 
+                                          placeholder="Quels sont les aspects positifs remarquables ?" required></textarea>
+                                <div class="invalid-feedback">
+                                    Veuillez indiquer les points forts.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="points_ameliorer" class="form-label">Points à améliorer *</label>
+                                <textarea class="form-control" id="points_ameliorer" name="points_ameliorer" rows="3" 
+                                          placeholder="Quels aspects pourraient être améliorés ?" required></textarea>
+                                <div class="invalid-feedback">
+                                    Veuillez indiquer les points à améliorer.
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="note_globale" class="form-label">Note globale sur 10 *</label>
+                                    <input type="number" class="form-control" id="note_globale" name="note_globale" 
+                                           min="0" max="10" step="0.5" required>
+                                    <small class="text-muted">Entre 0 et 10 (ex: 7.5)</small>
+                                    <div class="invalid-feedback">
+                                        Veuillez entrer une note entre 0 et 10.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="recommandation" class="form-label">Recommanderiez-vous cette expérience sur Forfeo ? *</label>
+                                    <select class="form-select" id="recommandation" name="recommandation" required>
+                                        <option value="">Sélectionnez</option>
+                                        <option value="Oui">Oui</option>
+                                        <option value="Non">Non</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Veuillez faire un choix.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Confirmation -->
+                            <h3 class="mb-4 mt-5">
+                                <i class="bi bi-shield-check"></i> Confirmation
+                            </h3>
+
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="confirmation_honnete" 
+                                           name="confirmation_honnete" value="Confirmé" required>
+                                    <label class="form-check-label" for="confirmation_honnete">
+                                        Je confirme que ce rapport est honnête, objectif et rédigé de bonne foi. *
+                                    </label>
+                                    <div class="invalid-feedback">
+                                        Vous devez confirmer l'authenticité de votre rapport.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Boutons -->
+                            <div class="text-center mt-5">
+                                <button type="submit" class="btn btn-forfeo-primary btn-lg me-3">
+                                    <i class="bi bi-send"></i> Soumettre le rapport
+                                </button>
+                                <a href="dashboard.html" class="btn btn-forfeo-outline btn-lg">
+                                    <i class="bi bi-x-circle"></i> Annuler
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer-forfeo mt-5">
+            <div class="container text-center">
+                <p>
+                    &copy; 2024 FORFEO LAB - Tous droits réservés | 
+                    <a href="https://isow.forfeo.com" target="_blank">Site principal Forfeo</a>
+                </p>
+                <p class="mt-2">
+                    <small>Plateforme destinée aux ambassadeurs-testeurs officiels</small>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript personnalisé -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
