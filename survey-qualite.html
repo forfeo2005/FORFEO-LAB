@@ -3,277 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Sondage qualité entreprise - FORFEO LAB">
-    <title>Sondage qualité - FORFEO LAB</title>
+    <title>Sondage Qualité - FORFEO LAB</title>
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- CSS personnalisé -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
     <div class="main-container">
-        <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-forfeo">
             <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <i class="bi bi-star-fill"></i> FORFEO LAB
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <a class="navbar-brand" href="index.html"><i class="bi bi-stars"></i> FORFEO LAB</a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="dashboard.html">Tableau de bord</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://isow.forfeo.com" target="_blank">Site principal</a>
-                        </li>
+                    <ul class="navbar-nav ms-auto gap-2">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard.html">Tableau de bord</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://isow.forfeo.com" target="_blank">Site principal</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <!-- Section du formulaire -->
-        <section class="content-section">
+        <section class="py-5">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <!-- En-tête -->
-                        <div class="text-center mb-4">
-                            <h1 class="mb-3">
-                                <i class="bi bi-star-half"></i> Sondage qualité & standards Forfeo
-                            </h1>
-                            <p class="lead">
-                                Évaluez les standards de qualité de l'entreprise selon les critères d'excellence Forfeo
-                            </p>
+                    <div class="col-lg-8">
+                        <div class="text-center mb-5">
+                            <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 rounded-pill px-3 py-2 mb-3">
+                                Audit Standards
+                            </span>
+                            <h1 class="fw-bolder mb-3 text-dark">Sondage Qualité</h1>
+                            <p class="text-muted lead">Évaluation des standards d'excellence Forfeo.</p>
                         </div>
 
-                        <!-- Formulaire -->
-                        <form class="form-forfeo needs-validation" novalidate>
-                            <!-- Champ caché pour Web3Forms -->
-                            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-                            <input type="hidden" name="subject" value="Nouveau sondage qualité - FORFEO LAB">
-                            <input type="hidden" name="redirect" value="confirmation.html">
+                        <div class="card card-forfeo border-0 p-4 p-md-5">
+                            <div class="card-body">
+                                
+                                <form action="https://api.web3forms.com/submit" method="POST" id="surveyForm" class="needs-validation" novalidate>
+                                    
+                                    <input type="hidden" name="access_key" value="c7c665be-ec7f-4455-9a5e-11ebb323fff9">
+                                    <input type="hidden" name="subject" value="Nouveau Sondage Qualité - Forfeo">
+                                    <input type="hidden" name="from_name" value="Forfeo Lab Bot">
+                                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-                            <!-- Informations de base -->
-                            <h3 class="mb-4">
-                                <i class="bi bi-info-circle"></i> Informations de base
-                            </h3>
-                            
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="nom_ambassadeur" class="form-label">Nom de l'ambassadeur *</label>
-                                    <input type="text" class="form-control" id="nom_ambassadeur" name="nom_ambassadeur" required>
-                                    <div class="invalid-feedback">
-                                        Veuillez entrer votre nom.
+                                    <div class="row g-4 mb-5">
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Ambassadeur *</label>
+                                            <input type="text" class="form-control" name="nom_ambassadeur" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label fw-semibold">Entreprise *</label>
+                                            <input type="text" class="form-control" name="nom_entreprise" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="nom_entreprise" class="form-label">Nom de l'entreprise *</label>
-                                    <input type="text" class="form-control" id="nom_entreprise" name="nom_entreprise" required>
-                                    <div class="invalid-feedback">
-                                        Veuillez entrer le nom de l'entreprise.
+
+                                    <h5 class="mb-4 text-primary fw-bold">Critères d'évaluation (1-5)</h5>
+                                    
+                                    <div class="mb-4 p-3 bg-light rounded-3">
+                                        <label class="form-label fw-bold d-block mb-3">Qualité de l'accueil *</label>
+                                        <div class="d-flex justify-content-between px-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="qualite_accueil" value="1" required> <label>1</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="qualite_accueil" value="2"> <label>2</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="qualite_accueil" value="3"> <label>3</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="qualite_accueil" value="4"> <label>4</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="qualite_accueil" value="5"> <label>5</label>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- Critères d'évaluation -->
-                            <h3 class="mb-4 mt-5">
-                                <i class="bi bi-clipboard-data"></i> Critères d'évaluation
-                            </h3>
-
-                            <p class="text-muted mb-4">
-                                Évaluez chaque critère sur une échelle de 1 à 5 :
-                                <br>1 = Très insatisfaisant | 2 = Insatisfaisant | 3 = Acceptable | 4 = Bon | 5 = Excellent
-                            </p>
-
-                            <!-- Qualité de l'accueil -->
-                            <div class="mb-4">
-                                <label class="form-label fw-bold">Qualité de l'accueil *</label>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">Très insatisfaisant</small>
-                                    <div class="btn-group" role="group">
-                                        <input type="radio" class="btn-check" name="qualite_accueil" id="accueil1" value="1" required>
-                                        <label class="btn btn-outline-secondary" for="accueil1">1</label>
-
-                                        <input type="radio" class="btn-check" name="qualite_accueil" id="accueil2" value="2">
-                                        <label class="btn btn-outline-secondary" for="accueil2">2</label>
-
-                                        <input type="radio" class="btn-check" name="qualite_accueil" id="accueil3" value="3">
-                                        <label class="btn btn-outline-secondary" for="accueil3">3</label>
-
-                                        <input type="radio" class="btn-check" name="qualite_accueil" id="accueil4" value="4">
-                                        <label class="btn btn-outline-secondary" for="accueil4">4</label>
-
-                                        <input type="radio" class="btn-check" name="qualite_accueil" id="accueil5" value="5">
-                                        <label class="btn btn-outline-secondary" for="accueil5">5</label>
+                                    <div class="mb-4 p-3 bg-light rounded-3">
+                                        <label class="form-label fw-bold d-block mb-3">Qualité du service *</label>
+                                        <div class="d-flex justify-content-between px-2">
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="qualite_service" value="1" required> <label>1</label></div>
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="qualite_service" value="2"> <label>2</label></div>
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="qualite_service" value="3"> <label>3</label></div>
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="qualite_service" value="4"> <label>4</label></div>
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="qualite_service" value="5"> <label>5</label></div>
+                                        </div>
                                     </div>
-                                    <small class="text-muted">Excellent</small>
-                                </div>
-                                <div class="invalid-feedback d-block" style="display: none !important;">
-                                    Veuillez sélectionner une note.
-                                </div>
-                            </div>
 
-                            <!-- Qualité du service -->
-                            <div class="mb-4">
-                                <label class="form-label fw-bold">Qualité du service *</label>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">Très insatisfaisant</small>
-                                    <div class="btn-group" role="group">
-                                        <input type="radio" class="btn-check" name="qualite_service" id="service1" value="1" required>
-                                        <label class="btn btn-outline-secondary" for="service1">1</label>
-
-                                        <input type="radio" class="btn-check" name="qualite_service" id="service2" value="2">
-                                        <label class="btn btn-outline-secondary" for="service2">2</label>
-
-                                        <input type="radio" class="btn-check" name="qualite_service" id="service3" value="3">
-                                        <label class="btn btn-outline-secondary" for="service3">3</label>
-
-                                        <input type="radio" class="btn-check" name="qualite_service" id="service4" value="4">
-                                        <label class="btn btn-outline-secondary" for="service4">4</label>
-
-                                        <input type="radio" class="btn-check" name="qualite_service" id="service5" value="5">
-                                        <label class="btn btn-outline-secondary" for="service5">5</label>
+                                    <div class="mb-4 p-3 bg-light rounded-3">
+                                        <label class="form-label fw-bold d-block mb-3">Ambiance générale *</label>
+                                        <div class="d-flex justify-content-between px-2">
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ambiance" value="1" required> <label>1</label></div>
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ambiance" value="2"> <label>2</label></div>
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ambiance" value="3"> <label>3</label></div>
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ambiance" value="4"> <label>4</label></div>
+                                            <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="ambiance" value="5"> <label>5</label></div>
+                                        </div>
                                     </div>
-                                    <small class="text-muted">Excellent</small>
-                                </div>
-                            </div>
 
-                            <!-- Ambiance générale -->
-                            <div class="mb-4">
-                                <label class="form-label fw-bold">Ambiance générale *</label>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">Très insatisfaisant</small>
-                                    <div class="btn-group" role="group">
-                                        <input type="radio" class="btn-check" name="ambiance_generale" id="ambiance1" value="1" required>
-                                        <label class="btn btn-outline-secondary" for="ambiance1">1</label>
-
-                                        <input type="radio" class="btn-check" name="ambiance_generale" id="ambiance2" value="2">
-                                        <label class="btn btn-outline-secondary" for="ambiance2">2</label>
-
-                                        <input type="radio" class="btn-check" name="ambiance_generale" id="ambiance3" value="3">
-                                        <label class="btn btn-outline-secondary" for="ambiance3">3</label>
-
-                                        <input type="radio" class="btn-check" name="ambiance_generale" id="ambiance4" value="4">
-                                        <label class="btn btn-outline-secondary" for="ambiance4">4</label>
-
-                                        <input type="radio" class="btn-check" name="ambiance_generale" id="ambiance5" value="5">
-                                        <label class="btn btn-outline-secondary" for="ambiance5">5</label>
+                                    <div class="mb-4">
+                                        <label class="form-label fw-semibold">Commentaires additionnels</label>
+                                        <textarea class="form-control" name="commentaires" rows="3"></textarea>
                                     </div>
-                                    <small class="text-muted">Excellent</small>
-                                </div>
-                            </div>
 
-                            <!-- Rapport qualité-prix -->
-                            <div class="mb-4">
-                                <label class="form-label fw-bold">Rapport qualité-prix *</label>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">Très insatisfaisant</small>
-                                    <div class="btn-group" role="group">
-                                        <input type="radio" class="btn-check" name="rapport_qualite_prix" id="prix1" value="1" required>
-                                        <label class="btn btn-outline-secondary" for="prix1">1</label>
-
-                                        <input type="radio" class="btn-check" name="rapport_qualite_prix" id="prix2" value="2">
-                                        <label class="btn btn-outline-secondary" for="prix2">2</label>
-
-                                        <input type="radio" class="btn-check" name="rapport_qualite_prix" id="prix3" value="3">
-                                        <label class="btn btn-outline-secondary" for="prix3">3</label>
-
-                                        <input type="radio" class="btn-check" name="rapport_qualite_prix" id="prix4" value="4">
-                                        <label class="btn btn-outline-secondary" for="prix4">4</label>
-
-                                        <input type="radio" class="btn-check" name="rapport_qualite_prix" id="prix5" value="5">
-                                        <label class="btn btn-outline-secondary" for="prix5">5</label>
+                                    <div class="d-grid gap-3 d-md-flex justify-content-md-center mt-5">
+                                        <button type="submit" class="btn btn-forfeo-primary px-5">Soumettre</button>
+                                        <a href="dashboard.html" class="btn btn-forfeo-outline px-4">Annuler</a>
                                     </div>
-                                    <small class="text-muted">Excellent</small>
-                                </div>
+                                </form>
+
                             </div>
-
-                            <!-- Respect de la promesse Forfeo -->
-                            <div class="mb-4">
-                                <label class="form-label fw-bold">Respect de la promesse Forfeo *</label>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <small class="text-muted">Très insatisfaisant</small>
-                                    <div class="btn-group" role="group">
-                                        <input type="radio" class="btn-check" name="respect_promesse" id="promesse1" value="1" required>
-                                        <label class="btn btn-outline-secondary" for="promesse1">1</label>
-
-                                        <input type="radio" class="btn-check" name="respect_promesse" id="promesse2" value="2">
-                                        <label class="btn btn-outline-secondary" for="promesse2">2</label>
-
-                                        <input type="radio" class="btn-check" name="respect_promesse" id="promesse3" value="3">
-                                        <label class="btn btn-outline-secondary" for="promesse3">3</label>
-
-                                        <input type="radio" class="btn-check" name="respect_promesse" id="promesse4" value="4">
-                                        <label class="btn btn-outline-secondary" for="promesse4">4</label>
-
-                                        <input type="radio" class="btn-check" name="respect_promesse" id="promesse5" value="5">
-                                        <label class="btn btn-outline-secondary" for="promesse5">5</label>
-                                    </div>
-                                    <small class="text-muted">Excellent</small>
-                                </div>
-                            </div>
-
-                            <!-- Commentaires additionnels -->
-                            <h3 class="mb-4 mt-5">
-                                <i class="bi bi-chat-left-text"></i> Commentaires additionnels
-                            </h3>
-
-                            <div class="mb-4">
-                                <label for="commentaires" class="form-label">Commentaires additionnels (optionnel)</label>
-                                <textarea class="form-control" id="commentaires" name="commentaires" rows="4" 
-                                          placeholder="Partagez des observations supplémentaires..."></textarea>
-                                <small class="text-muted">Ajoutez tout détail pertinent qui pourrait aider à améliorer l'expérience.</small>
-                            </div>
-
-                            <!-- Boutons -->
-                            <div class="text-center mt-5">
-                                <button type="submit" class="btn btn-forfeo-primary btn-lg me-3">
-                                    <i class="bi bi-send"></i> Soumettre le sondage
-                                </button>
-                                <a href="dashboard.html" class="btn btn-forfeo-outline btn-lg">
-                                    <i class="bi bi-x-circle"></i> Annuler
-                                </a>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer class="footer-forfeo mt-5">
-            <div class="container text-center">
-                <p>
-                    &copy; 2024 FORFEO LAB - Tous droits réservés | 
-                    <a href="https://isow.forfeo.com" target="_blank">Site principal Forfeo</a>
-                </p>
-                <p class="mt-2">
-                    <small>Plateforme destinée aux ambassadeurs-testeurs officiels</small>
-                </p>
+        <footer class="footer-forfeo text-center">
+            <div class="container">
+                <p class="mb-0 fw-semibold">&copy; 2025 FORFEO LAB</p>
             </div>
         </footer>
     </div>
-
-    <!-- Bootstrap 5 JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- JavaScript personnalisé -->
     <script src="assets/js/main.js"></script>
 </body>
 </html>
