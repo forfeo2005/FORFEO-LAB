@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Satisfaction Client - FORFEO LAB</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,9 +14,7 @@
         <nav class="navbar navbar-expand-lg navbar-forfeo">
             <div class="container">
                 <a class="navbar-brand" href="index.html"><i class="bi bi-stars"></i> FORFEO LAB</a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto gap-2">
                         <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
@@ -33,11 +30,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="text-center mb-5">
-                            <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 rounded-pill px-3 py-2 mb-3">
-                                Simulation Client
-                            </span>
+                            <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 rounded-pill px-3 py-2 mb-3">Simulation Client</span>
                             <h1 class="fw-bolder mb-3 text-dark">Sondage Satisfaction</h1>
-                            <p class="text-muted lead">Simulez l'expérience client et évaluez le ressenti.</p>
                         </div>
 
                         <div class="card card-forfeo border-0 p-4 p-md-5">
@@ -46,8 +40,7 @@
                                 <form action="https://api.web3forms.com/submit" method="POST" id="surveyForm" class="needs-validation" novalidate>
                                     
                                     <input type="hidden" name="access_key" value="c7c665be-ec7f-4455-9a5e-11ebb323fff9">
-                                    <input type="hidden" name="subject" value="Nouveau Sondage Satisfaction - Forfeo">
-                                    <input type="hidden" name="from_name" value="Forfeo Lab Bot">
+                                    <input type="hidden" name="subject" value="Nouveau Sondage Satisfaction">
                                     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
                                     <h4 class="mb-4 text-primary fw-bold">Infos de base</h4>
@@ -65,14 +58,14 @@
                                     <h4 class="mb-4 mt-5 text-primary fw-bold">Ressenti Client</h4>
                                     
                                     <div class="mb-4">
-                                        <label class="form-label fw-semibold">Niveau de satisfaction simulé *</label>
+                                        <label class="form-label fw-semibold">Niveau de satisfaction *</label>
                                         <select class="form-select" name="niveau_satisfaction" required>
                                             <option value="">Sélectionner...</option>
-                                            <option value="Très insatisfait">Très insatisfait 😠</option>
-                                            <option value="Insatisfait">Insatisfait 🙁</option>
-                                            <option value="Neutre">Neutre 😐</option>
-                                            <option value="Satisfait">Satisfait 🙂</option>
-                                            <option value="Très satisfait">Très satisfait 🤩</option>
+                                            <option value="Tres insatisfait">Très insatisfait</option>
+                                            <option value="Insatisfait">Insatisfait</option>
+                                            <option value="Neutre">Neutre</option>
+                                            <option value="Satisfait">Satisfait</option>
+                                            <option value="Tres satisfait">Très satisfait</option>
                                         </select>
                                     </div>
 
@@ -83,7 +76,7 @@
                                             <option value="Difficile">Difficile</option>
                                             <option value="Acceptable">Acceptable</option>
                                             <option value="Fluide">Fluide</option>
-                                            <option value="Très fluide">Très fluide</option>
+                                            <option value="Tres fluide">Très fluide</option>
                                         </select>
                                     </div>
 
@@ -94,7 +87,7 @@
 
                                     <div class="mb-4">
                                         <label class="form-label fw-semibold">Commentaire libre</label>
-                                        <textarea class="form-control" name="commentaire_libre" rows="4" placeholder="Partagez vos impressions..."></textarea>
+                                        <textarea class="form-control" name="commentaire_libre" rows="4"></textarea>
                                     </div>
 
                                     <div class="d-grid gap-3 d-md-flex justify-content-md-center mt-5">
@@ -102,19 +95,13 @@
                                         <a href="dashboard.html" class="btn btn-forfeo-outline px-4">Annuler</a>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <footer class="footer-forfeo text-center">
-            <div class="container">
-                <p class="mb-0 fw-semibold">&copy; 2025 FORFEO LAB</p>
-            </div>
-        </footer>
+        <footer class="footer-forfeo text-center"><div class="container"><p class="mb-0 fw-semibold">&copy; 2025 FORFEO LAB</p></div></footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
