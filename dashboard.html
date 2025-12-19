@@ -1,61 +1,146 @@
-<div class="row mt-5">
-    <div class="col-12">
-        <div class="card card-forfeo border-0 p-2">
-            <div class="card-body p-4 p-md-5">
-                
-                <div class="d-flex align-items-center mb-5">
-                    <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3 text-primary d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
-                        <i class="bi bi-info-circle-fill fs-3"></i>
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - FORFEO LAB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script>
+        if (!localStorage.getItem('forfeo_logged_in')) {
+            window.location.href = 'login.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <nav class="navbar navbar-expand-lg navbar-forfeo">
+            <div class="container">
+                <a class="navbar-brand" href="dashboard.html">
+                    <i class="bi bi-stars"></i> FORFEO LAB
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto gap-2 align-items-center">
+                        <li class="nav-item">
+                            <span class="nav-link fw-bold text-primary">
+                                <i class="bi bi-person-circle me-1"></i>
+                                <span id="userDisplay">Ambassadeur</span>
+                            </span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-sm btn-outline-danger rounded-pill ms-2" href="#" id="logoutBtn">
+                                <i class="bi bi-box-arrow-right"></i> Déconnexion
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-end mb-5">
+                    <div class="col-md-8">
+                        <h1 class="fw-bold mb-2">Espace Ambassadeur</h1>
+                        <p class="text-muted lead">Sélectionnez une mission pour commencer votre rapport.</p>
                     </div>
-                    <div>
-                        <h3 class="card-title fw-bold m-0 text-dark">Instructions & Conduite</h3>
-                        <p class="text-muted mb-0 small">Règles d'or pour une mission réussie</p>
+                    <div class="col-md-4 text-md-end">
+                        <div class="d-inline-flex align-items-center bg-white px-3 py-2 rounded-pill shadow-sm border">
+                            <span class="badge bg-success rounded-circle p-1 me-2"> </span>
+                            <small class="fw-bold text-muted">Connexion Sécurisée</small>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="row g-5">
-                    <div class="col-md-6 border-end-md border-light">
-                        <h5 class="fw-bold text-primary mb-4 text-uppercase fs-6 ls-1">
-                            <i class="bi bi-calendar-check me-2"></i>Avant votre visite
-                        </h5>
-                        <ul class="list-unstyled m-0">
-                            <li class="mb-3 d-flex align-items-start">
-                                <i class="bi bi-check-circle-fill text-info me-3 mt-1"></i>
-                                <span class="text-secondary fw-medium">Consultez les détails de l'expérience sur Forfeo</span>
-                            </li>
-                            <li class="mb-3 d-flex align-items-start">
-                                <i class="bi bi-check-circle-fill text-info me-3 mt-1"></i>
-                                <span class="text-secondary fw-medium">Préparez vos critères d'évaluation</span>
-                            </li>
-                            <li class="d-flex align-items-start">
-                                <i class="bi bi-check-circle-fill text-info me-3 mt-1"></i>
-                                <span class="text-secondary fw-medium">Vérifiez l'accès mobile au portail</span>
-                            </li>
-                        </ul>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card card-forfeo h-100 p-4 cursor-pointer" onclick="window.location='survey-experience.html'">
+                            <div class="card-body text-center">
+                                <div class="card-icon"><i class="bi bi-file-earmark-text"></i></div>
+                                <h3 class="h4 fw-bold mb-3">Rapport d'expérience</h3>
+                                <p class="text-muted small mb-4">Documentez votre visite terrain (photos, reçus).</p>
+                                <button class="btn btn-sm btn-forfeo-primary rounded-pill px-4">Remplir <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <h5 class="fw-bold text-primary mb-4 text-uppercase fs-6 ls-1">
-                            <i class="bi bi-shield-lock me-2"></i>Code de conduite
-                        </h5>
-                        <ul class="list-unstyled m-0">
-                            <li class="mb-3 d-flex align-items-start">
-                                <i class="bi bi-star-fill text-warning me-3 mt-1"></i>
-                                <span class="text-secondary fw-medium">Respectez la stricte confidentialité</span>
-                            </li>
-                            <li class="mb-3 d-flex align-items-start">
-                                <i class="bi bi-star-fill text-warning me-3 mt-1"></i>
-                                <span class="text-secondary fw-medium">Maintenez une attitude professionnelle</span>
-                            </li>
-                            <li class="d-flex align-items-start">
-                                <i class="bi bi-star-fill text-warning me-3 mt-1"></i>
-                                <span class="text-secondary fw-medium">Restez objectif dans vos rapports</span>
-                            </li>
-                        </ul>
+                    <div class="col-md-4">
+                        <div class="card card-forfeo h-100 p-4 cursor-pointer" onclick="window.location='survey-qualite.html'">
+                            <div class="card-body text-center">
+                                <div class="card-icon"><i class="bi bi-star-half"></i></div>
+                                <h3 class="h4 fw-bold mb-3">Audit Qualité</h3>
+                                <p class="text-muted small mb-4">Évaluez les standards (accueil, service, propreté).</p>
+                                <button class="btn btn-sm btn-forfeo-outline rounded-pill px-4">Évaluer <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card card-forfeo h-100 p-4 cursor-pointer" onclick="window.location='survey-satisfaction.html'">
+                            <div class="card-body text-center">
+                                <div class="card-icon"><i class="bi bi-emoji-smile"></i></div>
+                                <h3 class="h4 fw-bold mb-3">Satisfaction Client</h3>
+                                <p class="text-muted small mb-4">Simulation de parcours et ressenti émotionnel.</p>
+                                <button class="btn btn-sm btn-forfeo-outline rounded-pill px-4">Simuler <i class="bi bi-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <div class="card card-forfeo border-0">
+                            <div class="card-body p-4 p-md-5">
+                                <div class="d-flex align-items-center mb-4">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle p-2 me-3 text-primary"><i class="bi bi-info-circle fs-4"></i></div>
+                                    <h4 class="card-title fw-bold m-0">Instructions importantes</h4>
+                                </div>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <h6 class="text-uppercase text-muted fw-bold small mb-3">Avant votre visite</h6>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Consultez les détails de l'expérience sur Forfeo</li>
+                                            <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Préparez vos critères d'évaluation</li>
+                                            <li class="mb-2"><i class="bi bi-check2 text-primary me-2"></i>Vérifiez l'accès mobile au portail</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6 class="text-uppercase text-muted fw-bold small mb-3">Code de conduite</h6>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-2"><i class="bi bi-shield-check text-primary me-2"></i>Respectez la stricte confidentialité</li>
+                                            <li class="mb-2"><i class="bi bi-shield-check text-primary me-2"></i>Maintenez une attitude professionnelle</li>
+                                            <li class="mb-2"><i class="bi bi-shield-check text-primary me-2"></i>Restez objectif dans vos rapports</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
-        </div>
+        </section>
+
+        <footer class="footer-forfeo text-center mt-5 py-4 border-top">
+            <div class="container">
+                <p class="mb-0 small text-muted">&copy; 2025 FORFEO LAB - Accès Réservé</p>
+            </div>
+        </footer>
     </div>
-</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // Petit script pour afficher le nom de l'utilisateur connecté dans le menu
+        const user = localStorage.getItem('forfeo_user');
+        if(user) {
+            document.getElementById('userDisplay').textContent = user.toUpperCase();
+        }
+    </script>
+</body>
+</html>
