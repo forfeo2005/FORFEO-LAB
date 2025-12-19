@@ -14,7 +14,9 @@
     <div class="main-container">
         <nav class="navbar navbar-expand-lg navbar-forfeo">
             <div class="container">
-                <a class="navbar-brand" href="index.html"><i class="bi bi-stars"></i> FORFEO LAB</a>
+                <a class="navbar-brand" href="index.html">
+                    <i class="bi bi-stars"></i> FORFEO LAB
+                </a>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -87,6 +89,7 @@
                                                 <option value="Hôtel">Hôtel</option>
                                                 <option value="Spa">Spa</option>
                                                 <option value="Activité">Activité</option>
+                                                <option value="Autre">Autre (Préciser dans description)</option>
                                             </select>
                                         </div>
                                     </div>
@@ -118,6 +121,28 @@
                                         </div>
                                     </div>
 
+                                    <h4 class="mb-4 mt-5 text-primary fw-bold"><i class="bi bi-camera-reels me-2"></i>Preuves de la mission</h4>
+
+                                    <div class="alert alert-info border-0 bg-info bg-opacity-10 mb-4">
+                                        <small><i class="bi bi-info-circle-fill me-1"></i> Ces éléments confirment votre présence et débloquent votre prochain mandat gratuit.</small>
+                                    </div>
+
+                                    <div class="card bg-light border-0 mb-4">
+                                        <div class="card-body">
+                                            <div class="mb-4">
+                                                <label for="media_files" class="form-label fw-bold">Photos & Vidéos de l'expérience</label>
+                                                <input class="form-control" type="file" id="media_files" name="media_files[]" multiple accept="image/*,video/*" required>
+                                                <div class="form-text text-muted">Ajoutez vos meilleures prises de vue (Plats, Ambiance, Chambre).</div>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="proof_stay" class="form-label fw-bold">Preuve de passage (Reçu/Ticket)</label>
+                                                <input class="form-control" type="file" id="proof_stay" name="proof_stay" accept="image/*,.pdf">
+                                                <div class="form-text text-muted">Photo du reçu (même si montant 0$) ou confirmation de réservation.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-check mb-5">
                                         <input class="form-check-input" type="checkbox" id="confirm" required>
                                         <label class="form-check-label small text-muted" for="confirm">
@@ -142,7 +167,8 @@
 
         <footer class="footer-forfeo text-center">
             <div class="container">
-                <p class="mb-0 fw-semibold">&copy; 2025 FORFEO LAB</p>
+                <p class="mb-2 fw-semibold text-dark">&copy; 2025 FORFEO LAB</p>
+                <p class="small text-muted">Plateforme ambassadeurs officielle</p>
             </div>
         </footer>
     </div>
