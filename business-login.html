@@ -14,24 +14,44 @@
             <h3 class="fw-bold text-dark">Espace Client</h3>
             <p class="text-muted small">Accédez à vos rapports et audits.</p>
         </div>
-        <form action="business-dashboard.html">
+        
+        <form id="loginForm">
             <div class="mb-3">
                 <label class="form-label fw-bold small text-muted">ID Entreprise</label>
-                <input type="text" class="form-control form-control-lg bg-light border-0" placeholder="ex: hotel-prestige">
+                <input type="text" id="businessId" class="form-control form-control-lg bg-light border-0" placeholder="ex: hotel-prestige" required>
             </div>
             <div class="mb-4">
                 <label class="form-label fw-bold small text-muted">Mot de passe</label>
-                <input type="password" class="form-control form-control-lg bg-light border-0" placeholder="••••••••">
+                <input type="password" class="form-control form-control-lg bg-light border-0" placeholder="••••••••" required>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-dark btn-lg rounded-pill">Se connecter</button>
             </div>
         </form>
+        
         <div class="text-center mt-4">
             <a href="index.html" class="text-decoration-none small text-muted">Retour au site public</a>
         </div>
     </div>
 
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêche le rechargement de page
+            
+            const businessId = document.getElementById('businessId').value;
+            
+            // Simulation de connexion réussie
+            if(businessId) {
+                // On enregistre la "clé" de connexion dans le navigateur
+                localStorage.setItem('forfeo_business_logged_in', 'true');
+                localStorage.setItem('forfeo_business_user', businessId);
+                
+                // On redirige vers le tableau de bord
+                window.location.href = 'business-dashboard.html';
+            }
+        });
+    </script>
+    
     <script src="assets/js/forfy.js"></script>
 </body>
 </html>
