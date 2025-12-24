@@ -139,7 +139,6 @@
             document.getElementById('targetExperience').value = experienceName;
             
             // Calcul automatique de l'URL de redirection pour éviter les erreurs
-            // Cela crée un lien vers 'confirmation.html' basé sur l'endroit où se trouve la page actuelle
             const currentUrl = window.location.href;
             const newUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/')) + '/confirmation.html';
             document.getElementById('redirectInput').value = newUrl;
