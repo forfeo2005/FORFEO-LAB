@@ -3,82 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solutions Entreprises - FORFEO LAB</title>
+    <title>Solutions & Tarifs - FORFEO BUSINESS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <style>
+        .pricing-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; }
+        .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #2563eb; }
+        .pricing-header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 100px 0 60px; }
+        .check-list li { margin-bottom: 12px; display: flex; align-items: start; gap: 10px; color: #475569; }
+        .check-list i { color: #2563eb; flex-shrink: 0; margin-top: 3px; }
+        .popular-badge { background: #2563eb; color: white; position: absolute; top: 0; left: 50%; transform: translateX(-50%); padding: 5px 20px; font-size: 12px; font-weight: bold; border-radius: 0 0 10px 10px; text-transform: uppercase; letter-spacing: 1px; }
+    </style>
 </head>
 <body class="bg-light">
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm fixed-top py-3">
         <div class="container">
             <a class="navbar-brand fw-bold text-dark" href="index.html">
                 <i class="bi bi-briefcase-fill text-primary me-2"></i>FORFEO <span class="text-primary">BUSINESS</span>
             </a>
-            <div class="ms-auto d-flex gap-3">
-                <a href="index.html" class="btn btn-link text-decoration-none text-muted">Espace Ambassadeur</a>
-                <a href="business-login.html" class="btn btn-outline-dark rounded-pill px-4">Connexion Client</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navPro">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navPro">
+                <div class="ms-auto d-flex gap-3 align-items-center">
+                    <a href="index.html" class="text-decoration-none text-muted small fw-bold">Espace Ambassadeur</a>
+                    <a href="business-login.html" class="btn btn-outline-dark rounded-pill px-4">Connexion Client</a>
+                </div>
             </div>
         </div>
     </nav>
 
-    <section class="py-5 text-center">
+    <section class="pricing-header text-center mb-5">
         <div class="container">
-            <h1 class="display-4 fw-bold mb-3 text-dark">L'expérience client, mesurée par de vrais humains.</h1>
-            <p class="lead text-muted mb-5">Des audits de qualité et du contenu authentique pour propulser votre établissement.</p>
+            <span class="badge bg-white text-dark bg-opacity-10 border border-white border-opacity-25 rounded-pill px-3 py-2 mb-3">
+                Solutions B2B
+            </span>
+            <h1 class="display-4 fw-bold mb-3">Investissez dans votre Expérience Client</h1>
+            <p class="lead text-white-50 mx-auto" style="max-width: 700px;">
+                Des audits de qualité réalisés par de vrais humains certifiés. Choisissez la formule qui correspond à votre volume.
+            </p>
+        </div>
+    </section>
+
+    <section class="container pb-5">
+        <div class="d-flex justify-content-center align-items-center gap-3 mb-5">
+            <span class="fw-bold text-muted">Mensuel</span>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked style="width: 3em; height: 1.5em;">
+            </div>
+            <span class="fw-bold text-dark">Annuel <span class="badge bg-success ms-1">-15%</span></span>
+        </div>
+
+        <div class="row g-4 align-items-center">
             
-            <div class="row justify-content-center g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
-                        <div class="card-body">
-                            <h5 class="fw-bold text-muted">À LA CARTE</h5>
-                            <h2 class="display-5 fw-bold my-3">299$<small class="fs-6 text-muted">/mission</small></h2>
-                            <p class="text-muted mb-4">Idéal pour un test ponctuel.</p>
-                            <ul class="list-unstyled text-start mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>1 Ambassadeur Certifié</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Rapport d'audit complet (50+ points)</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>5 Photos HD libres de droits</li>
-                            </ul>
-                            <div class="d-grid">
-                                <a href="business-dashboard.html" class="btn btn-outline-dark rounded-pill py-2">Commander</a>
+            <div class="col-lg-4">
+                <div class="card pricing-card h-100 rounded-4 p-4 bg-white">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-muted text-uppercase small ls-1">À la carte</h5>
+                        <h2 class="display-4 fw-bold text-dark my-3">249$<span class="fs-6 text-muted fw-normal">/audit</span></h2>
+                        <p class="text-muted small mb-4">Parfait pour tester la qualité de nos rapports sans engagement.</p>
+                        
+                        <div class="d-grid mb-4">
+                            <button id="checkout-discovery" class="btn btn-outline-dark btn-lg rounded-pill" onclick="handlePayment('price_discovery_id')">
+                                Commander 1 Mission
+                            </button>
+                        </div>
+
+                        <ul class="list-unstyled check-list small">
+                            <li><i class="bi bi-check-circle-fill"></i> 1 Ambassadeur Certifié</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Rapport complet (50 points)</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Photos HD de l'expérience</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Support par courriel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card pricing-card h-100 rounded-4 p-4 bg-white position-relative border-primary shadow-lg" style="transform: scale(1.02);">
+                    <div class="popular-badge">Recommandé</div>
+                    <div class="card-body">
+                        <h5 class="fw-bold text-primary text-uppercase small ls-1">Mensuel</h5>
+                        <h2 class="display-4 fw-bold text-primary my-3">49.99$<span class="fs-6 text-muted fw-normal">/mois</span></h2>
+                        <p class="text-muted small mb-4">Le choix des gestionnaires proactifs.</p>
+                        
+                        <div class="d-grid mb-4">
+                            <button id="checkout-monthly" class="btn btn-primary btn-lg rounded-pill shadow-sm" onclick="handlePayment('price_monthly_id')">
+                                Commencer l'essai
+                            </button>
+                        </div>
+
+                        <p class="small fw-bold text-dark border-bottom pb-2 mb-3">Tout ce qui est inclus :</p>
+                        <ul class="list-unstyled check-list small">
+                            <li><i class="bi bi-star-fill text-warning"></i> <strong>1 Mission incluse / trimestre</strong></li>
+                            <li><i class="bi bi-check-circle-fill"></i> Accès illimité au Dashboard</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Comparatifs de marché</li>
+                            <li><i class="bi bi-check-circle-fill"></i> -15% sur missions supplémentaires</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Support Prioritaire 24/7</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="card pricing-card h-100 rounded-4 p-4 bg-white">
+                    <div class="card-body">
+                        <h5 class="fw-bold text-muted text-uppercase small ls-1">Annuel</h5>
+                        <h2 class="display-4 fw-bold text-dark my-3">499$<span class="fs-6 text-muted fw-normal">/an</span></h2>
+                        <p class="text-muted small mb-4">Pour les chaînes et l'excellence continue.</p>
+                        
+                        <div class="d-grid mb-4">
+                            <button id="checkout-annual" class="btn btn-dark btn-lg rounded-pill" onclick="handlePayment('price_annual_id')">
+                                Devenir Partenaire
+                            </button>
+                        </div>
+
+                        <ul class="list-unstyled check-list small">
+                            <li><i class="bi bi-star-fill text-warning"></i> <strong>2 Missions incluses / an</strong></li>
+                            <li><i class="bi bi-check-circle-fill"></i> Badge "Certifié Forfeo"</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Analyse concurrentielle</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Gestionnaire de compte dédié</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Facturation centralisée</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-center mt-5 pt-5">
+            <div class="col-lg-8">
+                <h3 class="fw-bold text-center mb-4">Questions Fréquentes</h3>
+                <div class="accordion accordion-flush" id="faqAccordion">
+                    <div class="accordion-item bg-transparent">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                Comment sont sélectionnés les ambassadeurs ?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Nous filtrons rigoureusement nos candidats. Seuls 10% sont retenus sur la base de leur qualité rédactionnelle, leur sérieux et leur historique de missions.
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border-primary border-2 shadow rounded-4 p-4 position-relative overflow-hidden">
-                        <div class="bg-primary text-white position-absolute top-0 end-0 px-3 py-1 small fw-bold" style="border-bottom-left-radius: 10px;">POPULAIRE</div>
-                        <div class="card-body">
-                            <h5 class="fw-bold text-primary">MENSUEL</h5>
-                            <h2 class="display-5 fw-bold my-3">29.99$<small class="fs-6 text-muted">/mois</small></h2>
-                            <p class="text-muted mb-4">+ Frais de mission réduits</p>
-                            <ul class="list-unstyled text-start mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Accès au Portail de Gestion</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>2 Missions prioritaires / an</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Tableau de bord de performance</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Support dédié 24/7</li>
-                            </ul>
-                            <div class="d-grid">
-                                <a href="business-dashboard.html" class="btn btn-primary rounded-pill py-2">S'abonner</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="col-lg-4 col-md-6">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
-                        <div class="card-body">
-                            <h5 class="fw-bold text-muted">ANNUEL</h5>
-                            <h2 class="display-5 fw-bold my-3">300$<small class="fs-6 text-muted">/an</small></h2>
-                            <p class="text-muted mb-4">La solution complète d'amélioration.</p>
-                            <ul class="list-unstyled text-start mb-4">
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Tout le forfait Mensuel</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>2 mois gratuits</li>
-                                <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i>Audit concurrentiel inclus</li>
-                            </ul>
-                            <div class="d-grid">
-                                <a href="business-dashboard.html" class="btn btn-outline-dark rounded-pill py-2">Choisir</a>
+                    <div class="accordion-item bg-transparent">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed bg-transparent fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                Puis-je annuler mon abonnement ?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body text-muted">
+                                Oui, l'abonnement mensuel est sans engagement et annulable à tout moment depuis votre tableau de bord.
                             </div>
                         </div>
                     </div>
@@ -87,7 +170,34 @@
         </div>
     </section>
 
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0 small opacity-50">&copy; 2025 FORFEO LAB - Solutions Entreprises</p>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/forfy.js"></script>
+    <script src="assets/js/forfy.js"></script> <script>
+        // Remplace par ta vraie Clé Publique Stripe (dispo sur dashboard.stripe.com)
+        const stripe = Stripe('pk_test_TA_CLE_PUBLIQUE_ICI');
+
+        function handlePayment(priceId) {
+            // Dans une vraie app Railway, ici on appelle ton Backend pour créer une session
+            // Pour l'instant, on simule l'action ou on redirige vers un lien de paiement Stripe direct
+            
+            console.log("Tentative d'achat pour : " + priceId);
+            
+            // EXEMPLE DE REDIRECTION DIRECTE (Méthode No-Code simple)
+            // Tu peux créer des "Liens de paiement" sur Stripe et les mettre ici :
+            if(priceId === 'price_discovery_id') {
+                window.location.href = 'https://buy.stripe.com/TON_LIEN_DECOUVERTE';
+            } else if(priceId === 'price_monthly_id') {
+                window.location.href = 'https://buy.stripe.com/TON_LIEN_MENSUEL';
+            } else {
+                alert("Redirection vers le paiement sécurisé Stripe...");
+                // window.location.href = 'https://buy.stripe.com/TON_LIEN_ANNUEL';
+            }
+        }
+    </script>
 </body>
 </html>
