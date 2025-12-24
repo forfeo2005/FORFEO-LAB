@@ -1,4 +1,4 @@
-/* assets/js/forfy.js */
+/* assets/js/forfy.js - Version Complète (Ambassadeurs + Entreprises) */
 (function() {
     function initForfy() {
         if (document.getElementById('forfy-widget')) return;
@@ -6,37 +6,56 @@
         // --- CONFIGURATION ---
         const config = {
             botName: "Forfy",
-            videoAvatar: "GifForfy.MP4", 
-            primaryColor: "#2563eb",
-            secondaryColor: "#06b6d4"
+            videoAvatar: "GifForfy.MP4", // Doit être à la racine
+            primaryColor: "#0f172a", // Bleu nuit plus "Corporate" pour faire sérieux
+            secondaryColor: "#2563eb" // Bleu Forfeo
         };
 
-        // --- MESSAGES ---
+        // --- CERVEAU (BASE DE CONNAISSANCES) ---
+        const greetingMessage = "Bonjour ! Je suis Forfy. Je peux aider les Ambassadeurs et les Entreprises. Qui êtes-vous ?";
+        
         const knowledgeBase = {
-            // Phrase exacte demandée
-            "bonjour": "Bonjour ! Je suis Forfy votre assistant. Comment puis-je vous aider aujourd'hui ?",
-            "salut": "Salut ! Prêt à rejoindre l'aventure Forfeo ?",
-            "c'est quoi ?": "Forfeo Lab est le portail exclusif où nos ambassadeurs testent gratuitement des expériences en échange de rapports qualité.",
-            "ambassadeur": "Être ambassadeur, c'est profiter de repas, séjours et activités offerts en échange de votre avis objectif.",
-            "contact": "Support : support@forfeolab.com",
-            "default": "Je ne suis pas sûr. Essayez 'Ambassadeur', 'Contact' ou 'C'est quoi ?'."
+            // Salutations
+            "bonjour": greetingMessage,
+            "salut": "Bienvenue chez Forfeo Lab. Comment puis-je vous orienter ?",
+            "allo": "Bonjour ! Une question sur nos services ?",
+
+            // Section AMBASSADEUR (B2C)
+            "ambassadeur": "Nos ambassadeurs testent gratuitement des expériences (repas, hôtels) en échange de rapports détaillés. C'est un rôle VIP.",
+            "c'est quoi ?": "Forfeo Lab est le trait d'union entre l'excellence des entreprises et l'expérience client. Nous offrons des audits par de vrais passionnés.",
+            "comment devenir": "Cliquez sur le bouton 'Devenir Ambassadeur' sur l'accueil ou visitez la page Candidature pour postuler.",
+            "gratuit": "Oui ! Pour les ambassadeurs, les expériences sont 100% offertes par nos partenaires.",
+
+            // Section ENTREPRISE (B2B)
+            "entreprise": "Pour les entreprises, nous offrons des solutions de client mystère nouvelle génération et de la création de contenu UGC.",
+            "prix": "Nos forfaits entreprises démarrent à 29.99$/mois pour des audits réguliers. Visitez la page 'Solutions' pour voir les détails.",
+            "tarif": "Nous avons des forfaits : Découverte (1 mission), Croissance (Mensuel) et Excellence (Annuel).",
+            "lanla": "Comme les grands cabinets d'audit, mais avec une touche plus authentique et axée sur l'expérience client réelle.",
+            "roi": "Nos clients constatent une amélioration de 15% de la satisfaction client dès les premiers rapports.",
+            "recruter": "Les entreprises ne recrutent pas directement. Vous commandez une mission, et Forfeo assigne le meilleur ambassadeur certifié pour vous.",
+
+            // Support
+            "contact": "Support technique : support@forfeolab.com | Service Commercial : sales@forfeolab.com",
+            "aide": "Dites-moi si vous êtes 'Ambassadeur' ou 'Entreprise' pour que je vous guide mieux !",
+            "default": "Je ne suis pas sûr. Êtes-vous une Entreprise ou un Ambassadeur ?"
         };
 
         const getPageMessage = () => {
             const path = window.location.pathname;
-            if (path.includes("candidature")) return "Une question sur le poste ? 🤔";
-            if (path.includes("dashboard")) return "Prêt pour une mission ? 🚀";
-            if (path.includes("login")) return "Besoin d'aide pour se connecter ? 🔐";
-            if (path.includes("survey")) return "Besoin d'aide pour le rapport ? 📝";
-            return "Besoin d'aide ? 👋";
+            // Messages contextuels intelligents
+            if (path.includes("business")) return "Une question sur nos solutions B2B ? 💼";
+            if (path.includes("candidature")) return "Besoin d'aide pour postuler ? ✍️";
+            if (path.includes("dashboard")) return "Prêt pour l'action ? 🚀";
+            if (path.includes("login")) return "Problème de connexion ? 🔐";
+            return "Bienvenue ! Ambassadeur ou Entreprise ? 👋";
         };
 
-        // --- CSS ---
+        // --- CSS INJECTÉ ---
         const style = document.createElement('style');
         style.innerHTML = `
             #forfy-widget { position: fixed; bottom: 30px; right: 30px; z-index: 99999; font-family: 'Inter', sans-serif; display: flex; flex-direction: column; align-items: flex-end; }
             #forfy-bubble { background: white; padding: 12px 18px; border-radius: 20px 20px 5px 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); margin-bottom: 15px; font-size: 14px; font-weight: 600; color: #1e293b; opacity: 0; transform: translateY(10px); animation: forfyFadeIn 0.5s forwards 1s; border: 1px solid #e2e8f0; max-width: 250px; text-align: right; }
-            #forfy-toggle { width: 75px; height: 75px; border-radius: 50%; overflow: hidden; cursor: pointer; box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5); border: 4px solid white; background: ${config.primaryColor}; transition: all 0.3s; position: relative; }
+            #forfy-toggle { width: 75px; height: 75px; border-radius: 50%; overflow: hidden; cursor: pointer; box-shadow: 0 8px 30px rgba(15, 23, 42, 0.4); border: 4px solid white; background: ${config.primaryColor}; transition: all 0.3s; position: relative; }
             #forfy-toggle:hover { transform: scale(1.1); }
             #forfy-toggle video { width: 100%; height: 100%; object-fit: cover; }
             #forfy-window { position: fixed; bottom: 120px; right: 30px; width: 360px; height: 500px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); border-radius: 24px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); display: none; flex-direction: column; border: 1px solid rgba(255,255,255,0.5); overflow: hidden; animation: forfySlideUp 0.4s; }
@@ -68,14 +87,14 @@
                             </div>
                             <div>
                                 <h3 style="margin:0; font-size:16px; font-weight:700;">${config.botName}</h3>
-                                <small style="opacity:0.9; font-size:11px;">En ligne</small>
+                                <small style="opacity:0.9; font-size:11px;">Assistant Virtuel</small>
                             </div>
                         </div>
                         <span class="forfy-close" id="forfy-close-btn">✕</span>
                     </div>
                     <div id="forfy-messages"></div>
                     <div class="forfy-input-area">
-                        <input type="text" id="forfy-input" placeholder="Écrivez votre message...">
+                        <input type="text" id="forfy-input" placeholder="Posez une question...">
                         <button id="forfy-send"><i class="bi bi-send-fill"></i></button>
                     </div>
                 </div>
@@ -91,7 +110,6 @@
         // --- LOGIQUE ---
         let isOpen = false;
         let hasGreeted = false;
-
         const toggleBtn = document.getElementById('forfy-toggle');
         const closeBtn = document.getElementById('forfy-close-btn');
         const sendBtn = document.getElementById('forfy-send');
