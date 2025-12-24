@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sondage Qualité - FORFEO LAB</title>
+    <title>Audit Qualité - FORFEO LAB</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,7 +14,9 @@
         <nav class="navbar navbar-expand-lg navbar-forfeo">
             <div class="container">
                 <a class="navbar-brand" href="index.html"><i class="bi bi-stars"></i> FORFEO LAB</a>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto gap-2">
                         <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
@@ -30,71 +32,76 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="text-center mb-5">
-                            <span class="badge bg-info bg-opacity-10 text-info border border-info border-opacity-25 rounded-pill px-3 py-2 mb-3">Audit Standards</span>
+                            <span class="badge bg-primary bg-opacity-10 text-primary border border-primary border-opacity-25 rounded-pill px-3 py-2 mb-3">
+                                Audit Standards
+                            </span>
                             <h1 class="fw-bolder mb-3 text-dark">Sondage Qualité</h1>
+                            <p class="text-muted lead">Évaluez objectivement les standards de service et de propreté.</p>
                         </div>
 
                         <div class="card card-forfeo border-0 p-4 p-md-5">
                             <div class="card-body">
+                                
                                 <form action="https://api.web3forms.com/submit" method="POST" id="surveyForm" class="needs-validation" novalidate>
                                     
                                     <input type="hidden" name="access_key" value="c7c665be-ec7f-4455-9a5e-11ebb323fff9">
-                                    <input type="hidden" name="subject" value="Nouveau Sondage Qualité">
+                                    <input type="hidden" name="subject" value="Nouveau Rapport Qualité">
                                     <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                                    
+                                    <input type="hidden" name="redirect" id="redirectInput" value="">
 
+                                    <h4 class="mb-4 text-primary fw-bold">Infos de base</h4>
                                     <div class="row g-4 mb-4">
                                         <div class="col-md-6">
                                             <label class="form-label fw-semibold">Ambassadeur *</label>
                                             <input type="text" class="form-control" name="nom_ambassadeur" required>
                                         </div>
                                         <div class="col-md-6">
-                                            <label class="form-label fw-semibold">Entreprise *</label>
+                                            <label class="form-label fw-semibold">Entreprise visitée *</label>
                                             <input type="text" class="form-control" name="nom_entreprise" required>
                                         </div>
                                     </div>
 
-                                    <h5 class="mb-4 text-primary fw-bold">Évaluation (1 = Faible, 5 = Excellent)</h5>
+                                    <h4 class="mb-4 mt-5 text-primary fw-bold">Critères d'évaluation</h4>
                                     
-                                    <div class="mb-4 p-3 bg-light rounded-3">
-                                        <label class="form-label fw-bold d-block mb-2">Qualité de l'accueil *</label>
-                                        <div class="d-flex justify-content-between px-2">
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_accueil" value="1" required><label class="form-check-label ms-1">1</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_accueil" value="2"><label class="form-check-label ms-1">2</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_accueil" value="3"><label class="form-check-label ms-1">3</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_accueil" value="4"><label class="form-check-label ms-1">4</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_accueil" value="5"><label class="form-check-label ms-1">5</label></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-4 p-3 bg-light rounded-3">
-                                        <label class="form-label fw-bold d-block mb-2">Qualité du service *</label>
-                                        <div class="d-flex justify-content-between px-2">
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_service" value="1" required><label class="form-check-label ms-1">1</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_service" value="2"><label class="form-check-label ms-1">2</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_service" value="3"><label class="form-check-label ms-1">3</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_service" value="4"><label class="form-check-label ms-1">4</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="qualite_service" value="5"><label class="form-check-label ms-1">5</label></div>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-4 p-3 bg-light rounded-3">
-                                        <label class="form-label fw-bold d-block mb-2">Ambiance générale *</label>
-                                        <div class="d-flex justify-content-between px-2">
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="ambiance" value="1" required><label class="form-check-label ms-1">1</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="ambiance" value="2"><label class="form-check-label ms-1">2</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="ambiance" value="3"><label class="form-check-label ms-1">3</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="ambiance" value="4"><label class="form-check-label ms-1">4</label></div>
-                                            <div class="form-check"><input class="form-check-input" type="radio" name="ambiance" value="5"><label class="form-check-label ms-1">5</label></div>
-                                        </div>
+                                    <div class="mb-4">
+                                        <label class="form-label fw-semibold">Qualité de l'accueil *</label>
+                                        <select class="form-select" name="accueil" required>
+                                            <option value="">Sélectionner...</option>
+                                            <option value="Mauvais">Mauvais</option>
+                                            <option value="Moyen">Moyen</option>
+                                            <option value="Bon">Bon</option>
+                                            <option value="Excellent">Excellent</option>
+                                        </select>
                                     </div>
 
                                     <div class="mb-4">
-                                        <label class="form-label fw-semibold">Commentaires</label>
-                                        <textarea class="form-control" name="commentaires" rows="3"></textarea>
+                                        <label class="form-label fw-semibold">Propreté des lieux *</label>
+                                        <select class="form-select" name="proprete" required>
+                                            <option value="">Sélectionner...</option>
+                                            <option value="Sale">Sale</option>
+                                            <option value="Acceptable">Acceptable</option>
+                                            <option value="Impeccable">Impeccable</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label fw-semibold">Vitesse du service *</label>
+                                        <select class="form-select" name="vitesse" required>
+                                            <option value="">Sélectionner...</option>
+                                            <option value="Lent">Lent</option>
+                                            <option value="Correct">Correct</option>
+                                            <option value="Rapide">Rapide</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <label class="form-label fw-semibold">Commentaire détaillé</label>
+                                        <textarea class="form-control" name="commentaire_detaille" rows="4"></textarea>
                                     </div>
 
                                     <div class="d-grid gap-3 d-md-flex justify-content-md-center mt-5">
-                                        <button type="submit" class="btn btn-forfeo-primary px-5">Soumettre</button>
+                                        <button type="submit" class="btn btn-forfeo-primary px-5">Envoyer</button>
                                         <a href="dashboard.html" class="btn btn-forfeo-outline px-4">Annuler</a>
                                     </div>
                                 </form>
@@ -106,7 +113,19 @@
         </section>
         <footer class="footer-forfeo text-center"><div class="container"><p class="mb-0 fw-semibold">&copy; 2025 FORFEO LAB</p></div></footer>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/main.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const currentUrl = window.location.href;
+            const newUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/')) + '/confirmation.html';
+            const redirectInput = document.getElementById('redirectInput');
+            if(redirectInput) redirectInput.value = newUrl;
+        });
+    </script>
+
+    <script src="assets/js/forfy.js"></script>
 </body>
 </html>
