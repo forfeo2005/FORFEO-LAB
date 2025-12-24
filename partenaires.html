@@ -106,9 +106,11 @@
                 <div class="modal-body">
                     <p class="text-muted small">Forfeo recevra votre intérêt. Si votre profil correspond, nous vous contacterons pour la mission.</p>
                     
-                    <form action="https://api.web3forms.com/submit" method="POST">
+                    <form action="https://api.web3forms.com/submit" method="POST" id="wishlistForm">
                         <input type="hidden" name="access_key" value="c7c665be-ec7f-4455-9a5e-11ebb323fff9">
                         <input type="hidden" name="subject" value="Nouveau Voeu (Wishlist) Ambassadeur">
+                        
+                        <input type="hidden" name="redirect" id="redirectInput" value="">
                         
                         <div class="mb-3">
                             <label class="fw-bold small">Expérience visée</label>
@@ -135,6 +137,13 @@
     <script>
         function openWishlist(experienceName) {
             document.getElementById('targetExperience').value = experienceName;
+            
+            // Calcul automatique de l'URL de redirection pour éviter les erreurs
+            // Cela crée un lien vers 'confirmation.html' basé sur l'endroit où se trouve la page actuelle
+            const currentUrl = window.location.href;
+            const newUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/')) + '/confirmation.html';
+            document.getElementById('redirectInput').value = newUrl;
+
             var myModal = new bootstrap.Modal(document.getElementById('wishlistModal'));
             myModal.show();
         }
