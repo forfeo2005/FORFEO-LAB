@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espace Client - FORFEO BUSINESS</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     
     <script>
+        // Si l'entreprise n'est pas connectée (pas de trace dans le navigateur), on la renvoie au login
         if (!localStorage.getItem('forfeo_business_logged_in')) {
             window.location.href = 'business-login.html';
         }
@@ -28,11 +30,12 @@
             
             <div class="d-flex align-items-center gap-3">
                 <div class="text-end text-white d-none d-md-block">
-                    <div class="fw-bold">Hôtel Le Prestige</div>
+                    <div class="fw-bold">Hôtel Le Prestige</div> 
                     <small class="text-white-50">Forfait Pro</small>
                 </div>
                 <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center" style="width:40px; height:40px;">HP</div>
-                <button id="logoutBtn" class="btn btn-outline-light btn-sm ms-2">
+                
+                <button id="logoutBtn" class="btn btn-outline-light btn-sm ms-2" title="Se déconnecter">
                     <i class="bi bi-box-arrow-right"></i>
                 </button>
             </div>
@@ -148,12 +151,33 @@
 
                         <div class="mb-3">
                             <label class="fw-bold small mb-1">Type de mission</label>
-                            <select class="form-select bg-light" name="type_mission" required>
-                                <option value="Client Mystère (Repas)">Client Mystère (Repas)</option>
-                                <option value="Client Mystère (Nuitée)">Client Mystère (Nuitée)</option>
-                                <option value="Création Contenu (Photos/Vidéos)">Création Contenu (Photos/Vidéos)</option>
-                                <option value="Audit Complet">Audit Complet</option>
+                            <select class="form-select bg-light" name="type_mission" id="missionSelector" required onchange="checkMissionType(this)">
+                                <option value="" selected disabled>Choisir un type...</option>
+                                
+                                <optgroup label="Visites Mystères">
+                                    <option value="Client Mystère (Repas/Dégustation)">Client Mystère (Repas/Dégustation)</option>
+                                    <option value="Client Mystère (Nuitée/Séjour)">Client Mystère (Nuitée/Séjour)</option>
+                                    <option value="Client Mystère (Activité/Loisir)">Client Mystère (Activité/Loisir)</option>
+                                </optgroup>
+                        
+                                <optgroup label="Création de Contenu (UGC)">
+                                    <option value="Pack Photos (Instagram/Web)">Pack Photos (Instagram/Web)</option>
+                                    <option value="Vidéo TikTok/Reels (Format court)">Vidéo TikTok/Reels (Format court)</option>
+                                    <option value="Couverture Événement (Stories)">Couverture Événement (Stories)</option>
+                                </optgroup>
+                        
+                                <optgroup label="Audits Spécifiques">
+                                    <option value="Audit Service Client (Téléphone/Email)">Audit Service Client (Téléphone/Email)</option>
+                                    <option value="Audit Propreté & Standards">Audit Propreté & Standards</option>
+                                </optgroup>
+                        
+                                <option value="Autre">Autre (Préciser)</option>
                             </select>
+                        </div>
+
+                        <div class="mb-3 d-none" id="autreMissionDiv">
+                            <label class="fw-bold small mb-1">Précisez votre besoin</label>
+                            <input type="text" class="form-control bg-light" name="autre_mission_details" placeholder="Ex: Tester le service voiturier uniquement...">
                         </div>
                         
                         <div class="mb-3">
@@ -162,8 +186,8 @@
                         </div>
 
                         <div class="mb-3">
-                            <label class="fw-bold small mb-1">Points précis à vérifier</label>
-                            <textarea class="form-control bg-light" name="instructions" rows="3" placeholder="Ex: Vérifier la rapidité du service au bar..."></textarea>
+                            <label class="fw-bold small mb-1">Instructions précises</label>
+                            <textarea class="form-control bg-light" name="instructions" rows="3" placeholder="Ex: Vérifier la rapidité du service au bar, prendre photo du dessert..."></textarea>
                         </div>
 
                         <div class="d-grid mt-4">
@@ -179,8 +203,21 @@
     <script src="assets/js/forfy.js"></script>
     
     <script>
+        // 1. Gestion de l'affichage du champ "Autre"
+        function checkMissionType(select) {
+            var autreDiv = document.getElementById('autreMissionDiv');
+            if(select.value === 'Autre') {
+                autreDiv.classList.remove('d-none');
+                // On rend le champ requis si "Autre" est sélectionné
+                autreDiv.querySelector('input').setAttribute('required', 'true');
+            } else {
+                autreDiv.classList.add('d-none');
+                autreDiv.querySelector('input').removeAttribute('required');
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
-            // Calcul de la redirection
+            // 2. Calcul automatique de la redirection (pour que ça marche sur GitHub Pages ou ailleurs)
             const currentUrl = window.location.href;
             const newUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/')) + '/confirmation.html';
             const redirectInput = document.getElementById('redirectInput');
@@ -188,9 +225,12 @@
                 redirectInput.value = newUrl;
             }
 
-            // Logout
+            // 3. Gestion de la Déconnexion
             document.getElementById('logoutBtn').addEventListener('click', function() {
+                // On supprime la clé de connexion
                 localStorage.removeItem('forfeo_business_logged_in');
+                localStorage.removeItem('forfeo_business_user');
+                // On redirige vers le login
                 window.location.href = 'business-login.html';
             });
         });
