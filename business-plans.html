@@ -9,8 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     
-    <script src="https://js.stripe.com/v3/"></script>
-    
     <style>
         .pricing-card { transition: all 0.3s ease; border: 1px solid #f1f5f9; }
         .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #2563eb; }
@@ -70,7 +68,7 @@
                         <p class="text-muted small mb-4">Parfait pour tester la qualité de nos rapports sans engagement.</p>
                         
                         <div class="d-grid mb-4">
-                            <button id="checkout-discovery" class="btn btn-outline-dark btn-lg rounded-pill" onclick="handlePayment('price_discovery_id')">
+                            <button class="btn btn-outline-dark btn-lg rounded-pill" onclick="handlePayment('price_discovery_id')">
                                 Commander 1 Mission
                             </button>
                         </div>
@@ -94,7 +92,7 @@
                         <p class="text-muted small mb-4">Le choix des gestionnaires proactifs.</p>
                         
                         <div class="d-grid mb-4">
-                            <button id="checkout-monthly" class="btn btn-primary btn-lg rounded-pill shadow-sm" onclick="handlePayment('price_monthly_id')">
+                            <button class="btn btn-primary btn-lg rounded-pill shadow-sm" onclick="handlePayment('price_monthly_id')">
                                 Commencer l'essai
                             </button>
                         </div>
@@ -119,7 +117,7 @@
                         <p class="text-muted small mb-4">Pour les chaînes et l'excellence continue.</p>
                         
                         <div class="d-grid mb-4">
-                            <button id="checkout-annual" class="btn btn-dark btn-lg rounded-pill" onclick="handlePayment('price_annual_id')">
+                            <button class="btn btn-dark btn-lg rounded-pill" onclick="handlePayment('price_annual_id')">
                                 Devenir Partenaire
                             </button>
                         </div>
@@ -178,24 +176,21 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/forfy.js"></script> <script>
-        // Remplace par ta vraie Clé Publique Stripe (dispo sur dashboard.stripe.com)
-        const stripe = Stripe('pk_test_TA_CLE_PUBLIQUE_ICI');
-
         function handlePayment(priceId) {
-            // Dans une vraie app Railway, ici on appelle ton Backend pour créer une session
-            // Pour l'instant, on simule l'action ou on redirige vers un lien de paiement Stripe direct
             
-            console.log("Tentative d'achat pour : " + priceId);
-            
-            // EXEMPLE DE REDIRECTION DIRECTE (Méthode No-Code simple)
-            // Tu peux créer des "Liens de paiement" sur Stripe et les mettre ici :
+            // 1. FORFAIT DÉCOUVERTE (249$)
             if(priceId === 'price_discovery_id') {
-                window.location.href = 'https://buy.stripe.com/TON_LIEN_DECOUVERTE';
-            } else if(priceId === 'price_monthly_id') {
-                window.location.href = 'https://buy.stripe.com/TON_LIEN_MENSUEL';
-            } else {
-                alert("Redirection vers le paiement sécurisé Stripe...");
-                // window.location.href = 'https://buy.stripe.com/TON_LIEN_ANNUEL';
+                window.location.href = 'https://buy.stripe.com/6oUbJ2bPs3W79QsalUd7q02';
+            } 
+            
+            // 2. FORFAIT CROISSANCE / MENSUEL (49.99$)
+            else if(priceId === 'price_monthly_id') {
+                window.location.href = 'https://buy.stripe.com/7sY4gA06K1NZ6Eg3Xwd7q00';
+            } 
+            
+            // 3. FORFAIT EXCELLENCE / ANNUEL (499$)
+            else {
+                window.location.href = 'https://buy.stripe.com/5kQ5kE7zcgIT0fS1Pod7q01';
             }
         }
     </script>
