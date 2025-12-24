@@ -33,6 +33,11 @@
         .btn-flash:hover { transform: scale(1.05); color: white; }
         .hero-animate { animation: float 6s ease-in-out infinite; }
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        /* Style pour le mur social */
+        .social-img-container { overflow: hidden; border-radius: 12px; }
+        .social-img-container img { transition: transform 0.3s ease; }
+        .social-img-container:hover img { transform: scale(1.1); }
     </style>
 </head>
 <body>
@@ -52,6 +57,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="dashboard.html">Tableau de bord</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="partenaires.html">Nos Partenaires</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="https://isow.forfeo.com" target="_blank">Site principal</a>
@@ -148,7 +156,45 @@
             </div>
         </section>
 
-        <footer class="footer-forfeo text-center py-4">
+        <section class="py-5 bg-light border-top">
+            <div class="container text-center">
+                <div class="mb-5">
+                    <h2 class="fw-bold mb-2">La Communauté Forfeo</h2>
+                    <p class="text-muted">Rejoignez le mouvement sur Instagram <span class="text-primary fw-bold">@ForfeoLab</span></p>
+                </div>
+
+                <div class="row g-3 justify-content-center">
+                    <div class="col-6 col-md-3">
+                        <div class="ratio ratio-1x1 social-img-container shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80" class="object-fit-cover" alt="Resto">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="ratio ratio-1x1 social-img-container shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" class="object-fit-cover" alt="Spa">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="ratio ratio-1x1 social-img-container shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" class="object-fit-cover" alt="Hotel">
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 d-none d-md-block">
+                        <div class="ratio ratio-1x1 social-img-container shadow-sm">
+                            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=400&q=80" class="object-fit-cover" alt="Cocktail">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <a href="https://instagram.com" target="_blank" class="btn btn-outline-dark rounded-pill px-4">
+                        <i class="bi bi-instagram me-2"></i>Voir toutes les photos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer-forfeo text-center py-4 bg-white border-top">
             <div class="container">
                 <p class="mb-2 fw-semibold text-dark">&copy; 2025 FORFEO LAB</p>
                 <div class="small text-muted">
