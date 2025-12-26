@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORFEO LAB - Portail Ambassadeurs & Conformité Loi 27</title>
+    <title>FORFEO LAB - Portail Ambassadeurs & Conformité</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
     <style>
-        :root { --primary-blue: #2563eb; --accent-cyan: #06b6d4; }
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        
+        /* TES ANIMATIONS ORIGINALES CONSERVÉES */
         @keyframes flashPulse {
             0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
             70% { box-shadow: 0 0 0 20px rgba(37, 99, 235, 0); }
@@ -24,8 +23,10 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
         .btn-flash {
-            background: linear-gradient(45deg, var(--primary-blue), var(--accent-cyan), var(--primary-blue));
+            background: linear-gradient(45deg, #2563eb, #06b6d4, #2563eb);
             background-size: 200% 200%;
             color: white; border: none; font-weight: 800;
             animation: gradientMove 3s ease infinite, flashPulse 2s infinite;
@@ -33,35 +34,33 @@
         }
         .btn-flash:hover { transform: scale(1.05); color: white; }
         .hero-animate { animation: float 6s ease-in-out infinite; }
-        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         
-        .sticky-countdown { z-index: 1060; font-size: 0.9rem; transition: all 0.5s; }
-        .card-forfeo { transition: all 0.3s ease; border: 1px solid #e2e8f0; border-radius: 16px; }
-        .card-forfeo:hover { transform: translateY(-5px); border-color: var(--primary-blue); box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); }
-        
-        .certificate-container { 
-            border: 15px solid #1e293b !important; 
-            background: white; 
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-        }
-        .step-content img { border-radius: 12px; object-fit: cover; height: 300px; width: 100%; }
+        .social-img-container { overflow: hidden; border-radius: 12px; }
+        .social-img-container img { transition: transform 0.3s ease; height: 100%; width: 100%; object-fit: cover; }
+        .social-img-container:hover img { transform: scale(1.1); }
+
+        /* NOUVEAUX STYLES FLASHY & ALIGNEMENT */
+        .nav-tabs .nav-link { border: none; color: #64748b; font-weight: 600; padding: 1rem 2rem; }
+        .nav-tabs .nav-link.active { color: #2563eb; border-bottom: 3px solid #2563eb; background: transparent; }
+        .card-forfeo { border: 1px solid #e2e8f0; transition: all 0.3s ease; border-radius: 16px; cursor: pointer; }
+        .card-forfeo:hover { transform: translateY(-10px); border-color: #2563eb; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        .sticky-banner { position: sticky; top: 0; z-index: 1070; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
-    <div id="top-banner" class="bg-danger text-white text-center py-2 sticky-top sticky-countdown">
-        <div class="container">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-            <strong>Urgence LMRSST :</strong> Il reste <span id="countdown" class="fw-bold">--j --h --m</span> avant les inspections.
-            <a href="#section-loi27" class="btn btn-light btn-sm ms-3 fw-bold text-danger rounded-pill px-3">Vérifier ma conformité</a>
+    <div class="bg-danger text-white text-center py-2 sticky-banner shadow-sm">
+        <div class="container d-flex justify-content-center align-items-center gap-2">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            <span><strong>Urgence LMRSST :</strong> Il reste <span id="countdown">--j --h --m</span> avant les inspections.</span>
+            <button class="btn btn-light btn-sm fw-bold rounded-pill px-3 ms-2" onclick="showTab('tab-loi27')">Vérifier</button>
         </div>
     </div>
 
     <div class="main-container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top" style="top: 40px;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
             <div class="container">
-                <a class="navbar-brand fw-bold text-primary" href="#">
+                <a class="navbar-brand fw-bold text-primary" href="index.html">
                     <i class="bi bi-stars"></i> FORFEO LAB
                 </a>
                 <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -69,210 +68,209 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto gap-2 align-items-center">
-                        <li class="nav-item"><a class="nav-link fw-medium" href="#">Accueil</a></li>
-                        <li class="nav-item"><a class="nav-link fw-medium" href="dashboard.html">Tableau de bord</a></li>
-                        <li class="nav-item"><a class="nav-link fw-medium" href="#section-loi27">Loi 27</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="dashboard.html">Tableau de bord</a></li>
+                        <li class="nav-item"><a class="nav-link" href="partenaires.html">Nos Partenaires</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://isow.forfeo.com" target="_blank">Site principal</a></li>
                         <li class="nav-item ms-md-2">
-                            <a class="btn btn-primary rounded-pill px-4 fw-bold shadow-sm" href="https://buy.stripe.com/00wbJ2g5I2S39Qs3Xwd7q03">
-                                <i class="bi bi-cart-check me-1"></i> Forfait 19.99$
-                            </a>
+                            <button class="btn btn-outline-primary rounded-pill px-4 fw-bold" onclick="showTab('tab-loi27')">
+                                <i class="bi bi-briefcase-fill me-1"></i> Offre Entreprise
+                            </button>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-        <section class="py-5 text-center mt-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-9 hero-animate">
-                        <span class="badge bg-white text-primary border border-primary-subtle rounded-pill px-3 py-2 mb-4 shadow-sm">
-                            ✨ Solution Santé & Sécurité Québec
-                        </span>
-                        <h1 class="display-3 mb-3 fw-extrabold text-dark">L'Excellence Forfeo,<br><span class="text-primary">La Conformité Loi 27.</span></h1>
-                        <p class="lead text-muted mb-4 px-md-5">
-                            Devenez ambassadeur de marque ou sécurisez votre PME contre les risques psychosociaux (RPS) avec nos outils interactifs.
-                        </p>
-                        <div class="d-flex justify-content-center gap-3 flex-column flex-md-row">
-                            <a href="#section-loi27" class="btn btn-flash btn-lg px-5 py-3 rounded-pill shadow-lg">
-                                <i class="bi bi-shield-check me-2"></i> Tester ma Conformité
+        <div class="container mt-4">
+            <ul class="nav nav-tabs justify-content-center border-0" id="serviceTabs" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" id="ambassadeur-tab" data-bs-toggle="tab" data-bs-target="#tab-ambassadeur">Espace Ambassadeur</button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" id="loi27-tab" data-bs-toggle="tab" data-bs-target="#tab-loi27">Conformité Loi 27</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content" id="serviceTabsContent">
+            
+            <div class="tab-pane fade show active" id="tab-ambassadeur">
+                <section class="py-5 text-center mt-3">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9 hero-animate">
+                                <span class="badge bg-white text-primary border border-primary-subtle rounded-pill px-3 py-2 mb-4 shadow-sm">
+                                    ✨ Espace Ambassadeur Officiel
+                                </span>
+                                <h1 class="display-4 mb-3 hero-title fw-bold">Vivez l'expérience Forfeo en VIP</h1>
+                                <p class="lead text-muted mb-4 px-md-5">Rejoignez notre cercle d'élite. Testez gratuitement les meilleures adresses du Québec.</p>
+                                <div class="d-flex justify-content-center align-items-center gap-3 flex-column flex-md-row mb-5">
+                                    <a href="candidature.html" class="btn btn-flash btn-lg px-5 py-3 rounded-pill shadow-lg text-decoration-none">
+                                        <i class="bi bi-star-fill me-2"></i> Devenir Ambassadeur
+                                    </a>
+                                    <a href="dashboard.html" class="btn btn-link text-decoration-none text-muted">Déjà membre ? Accéder <i class="bi bi-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="py-5 mb-5">
+                    <div class="container">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="card card-forfeo h-100 p-4 shadow-sm" onclick="window.location='survey-qualite.html'">
+                                    <div class="card-body text-center">
+                                        <div class="fs-1 text-primary mb-3"><i class="bi bi-clipboard-data"></i></div>
+                                        <h3 class="h4 fw-bold mb-3">Évaluer</h3>
+                                        <p class="text-muted small">Analysez objectivement la qualité des services lors de vos visites mystères.</p>
+                                        <span class="btn btn-sm btn-link text-primary fw-bold p-0">Commencer <i class="bi bi-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card card-forfeo h-100 p-4 shadow-sm" onclick="window.location='survey-experience.html'">
+                                    <div class="card-body text-center">
+                                        <div class="fs-1 text-primary mb-3"><i class="bi bi-pencil-square"></i></div>
+                                        <h3 class="h4 fw-bold mb-3">Documenter</h3>
+                                        <p class="text-muted small">Remplissez des rapports détaillés et ajoutez vos photos via notre interface.</p>
+                                        <span class="btn btn-sm btn-link text-primary fw-bold p-0">Rédiger <i class="bi bi-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card card-forfeo h-100 p-4 shadow-sm" onclick="window.location='survey-satisfaction.html'">
+                                    <div class="card-body text-center">
+                                        <div class="fs-1 text-primary mb-3"><i class="bi bi-graph-up-arrow"></i></div>
+                                        <h3 class="h4 fw-bold mb-3">Améliorer</h3>
+                                        <p class="text-muted small">Vos retours impactent directement l'excellence de l'écosystème Forfeo.</p>
+                                        <span class="btn btn-sm btn-link text-primary fw-bold p-0">Commencer <i class="bi bi-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="tab-pane fade" id="tab-loi27">
+                <section class="py-5 text-center mt-3">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+                                <span class="badge bg-danger text-white rounded-pill px-3 py-2 mb-4">Urgent : Conformité 2025</span>
+                                <h1 class="display-4 fw-bold mb-3">L'Excellence Forfeo,<br><span class="text-primary">La Conformité Loi 27</span></h1>
+                                <p class="text-muted lead mb-5">Sécurisez votre PME contre les risques psychosociaux (RPS) et évitez les amendes de la CNESST.</p>
+                                
+                                <div class="card shadow-lg border-0 p-4 text-start mx-auto" style="max-width: 600px;">
+                                    <h4 class="fw-bold mb-4 border-bottom pb-2">Diagnostic de Conformité</h4>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">Nom complet</label>
+                                        <input type="text" id="pdf_name" class="form-control" placeholder="Entrez votre nom">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label fw-bold">Statut de l'entreprise</label>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check1">
+                                            <label class="form-check-label small">Nous avons identifié les risques psychosociaux.</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="check2">
+                                            <label class="form-check-label small">Nos gestionnaires sont formés à la Loi 27.</label>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary w-100 fw-bold py-3 rounded-pill" onclick="generatePDF()">
+                                        <i class="bi bi-file-pdf me-2"></i> Générer mon Rapport de Diagnostic
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="py-5 bg-light">
+                    <div class="container">
+                        <h2 class="text-center fw-bold mb-5">Questions Fréquentes (FAQ)</h2>
+                        <div class="accordion accordion-flush mx-auto shadow-sm bg-white p-3 rounded-4" id="faqLoi27" style="max-width: 800px;">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        Est-ce que Forfeo remplace un avocat ?
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqLoi27">
+                                    <div class="accordion-body text-muted">
+                                        Non. Forfeo est une solution de conformité technologique qui documente vos actions. Nous aidons à la prévention, mais nous ne remplaçons pas un avis juridique spécifique.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        Pourquoi un abonnement mensuel ?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqLoi27">
+                                    <div class="accordion-body text-muted">
+                                        La Loi 27 exige un suivi continu. Votre abonnement garantit que vos preuves de formation et vos analyses de risques sont archivées et mises à jour selon les derniers décrets de la CNESST.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-5 pt-3">
+                            <a href="https://buy.stripe.com/00wbJ2g5I2S39Qs3Xwd7q03" class="btn btn-flash btn-lg px-5 py-3 rounded-pill shadow">
+                                Débloquer le forfait complet (19,99$)
                             </a>
-                            <a href="candidature.html" class="btn btn-outline-dark btn-lg px-5 py-3 rounded-pill">
-                                Devenir Ambassadeur
-                            </a>
                         </div>
                     </div>
+                </section>
+            </div>
+        </div>
+
+        <section class="py-5 bg-light border-top">
+            <div class="container text-center">
+                <div class="mb-5">
+                    <h2 class="fw-bold mb-2">La Communauté Forfeo</h2>
+                    <p class="text-muted">Rejoignez le mouvement sur Instagram <span class="text-primary fw-bold">@ForfeoLab</span></p>
                 </div>
+                <div class="row g-3 justify-content-center">
+                    <div class="col-6 col-md-3"><div class="ratio ratio-1x1 social-img-container shadow-sm"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=400&q=80" alt="Resto"></div></div>
+                    <div class="col-6 col-md-3"><div class="ratio ratio-1x1 social-img-container shadow-sm"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=400&q=80" alt="Spa"></div></div>
+                    <div class="col-6 col-md-3"><div class="ratio ratio-1x1 social-img-container shadow-sm"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="Hotel"></div></div>
+                    <div class="col-6 col-md-3 d-none d-md-block"><div class="ratio ratio-1x1 social-img-container shadow-sm"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=400&q=80" alt="Cocktail"></div></div>
+                </div>
+                <div class="mt-4"><a href="https://instagram.com" target="_blank" class="btn btn-outline-dark rounded-pill px-4"><i class="bi bi-instagram me-2"></i>Voir les photos</a></div>
             </div>
         </section>
 
-        <section id="section-loi27" class="py-5 bg-white">
-            <div class="container py-4">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-6">
-                        <h2 class="fw-bold mb-4">Votre entreprise est-elle prête pour l'Automne 2025 ?</h2>
-                        <p class="text-muted">La <strong>Loi 27 (LMRSST)</strong> oblige désormais tous les employeurs québécois à gérer les risques psychosociaux (stress, harcèlement, charge de travail) au même titre que la sécurité physique.</p>
-                        <ul class="list-unstyled mt-4">
-                            <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i> Amendes jusqu'à 20 000 $ évitées.</li>
-                            <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i> Réduction de l'absentéisme et du burn-out.</li>
-                            <li class="mb-3"><i class="bi bi-check2-circle text-primary me-2"></i> Preuve de diligence raisonnable CNESST.</li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="card card-forfeo shadow-lg p-4 border-0" id="diagnostic-card">
-                            <h4 class="fw-bold mb-4">Auto-Évaluation Gratuite</h4>
-                            <form id="loi27Form">
-                                <div class="mb-3">
-                                    <label class="form-label fw-bold small">Nombre d'employés</label>
-                                    <select class="form-select" id="q_taille">
-                                        <option value="petit">Moins de 20</option>
-                                        <option value="grand">20 employés ou plus</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label fw-bold small">Pratiques actuelles</label>
-                                    <div class="form-check small mb-1">
-                                        <input class="form-check-input" type="checkbox" id="rps_1">
-                                        <label class="form-check-label">Analyse de charge de travail documentée</label>
-                                    </div>
-                                    <div class="form-check small">
-                                        <input class="form-check-input" type="checkbox" id="rps_2">
-                                        <label class="form-check-label">Politique de civilité diffusée</label>
-                                    </div>
-                                </div>
-                                <div class="row g-2 mb-3">
-                                    <div class="col-6"><input type="text" id="user_name" class="form-control form-control-sm" placeholder="Votre nom" required></div>
-                                    <div class="col-6"><input type="email" id="user_email" class="form-control form-control-sm" placeholder="Courriel" required></div>
-                                </div>
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" id="consentement_loi25" required>
-                                    <label class="form-check-label text-muted" style="font-size: 0.75rem;">J'accepte le traitement de mes données (Loi 25).</label>
-                                </div>
-                                <button type="button" class="btn btn-primary w-100 rounded-pill fw-bold" onclick="traiterEtAfficher()">Générer mon Rapport PDF</button>
-                            </form>
-
-                            <div id="resultContainer" class="mt-4 d-none animate__animated animate__fadeIn">
-                                <div class="alert alert-primary border-0 shadow-sm d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <span class="small fw-bold text-uppercase">Score de préparation</span>
-                                        <h3 class="mb-0" id="scoreFinal">0%</h3>
-                                    </div>
-                                    <button class="btn btn-danger btn-sm rounded-pill" onclick="exporterPDF()"><i class="bi bi-file-pdf"></i> Télécharger</button>
-                                </div>
-                                <a href="#formation-interactive" class="btn btn-outline-primary w-100 rounded-pill btn-sm fw-bold">Continuer vers la formation <i class="bi bi-arrow-down"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="formation-interactive" class="py-5 bg-light">
+        <footer class="footer-forfeo text-center py-4 bg-white border-top">
             <div class="container">
-                <div class="text-center mb-5">
-                    <h2 class="fw-bold">Module Sentinelle SST</h2>
-                    <p class="text-muted">Formez vos employés aux risques psychosociaux en 5 minutes.</p>
-                </div>
-
-                <div class="card shadow-lg border-0 mx-auto overflow-hidden" style="max-width: 900px;" id="formationBox">
-                    <div class="progress" style="height: 6px; border-radius: 0;">
-                        <div id="progressionBarre" class="progress-bar bg-primary" style="width: 20%;"></div>
-                    </div>
-                    <div class="card-body p-5" id="step-container">
-                        <div id="step1" class="step-content">
-                            <div class="row align-items-center">
-                                <div class="col-md-5 mb-4 mb-md-0">
-                                    <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=500" alt="Formation">
-                                </div>
-                                <div class="col-md-7">
-                                    <span class="badge bg-primary mb-3">Module 1 : Les Fondements</span>
-                                    <h3 class="fw-bold">La Loi 27 en un coup d'œil</h3>
-                                    <p class="text-muted small">L'employeur doit désormais s'assurer que l'organisation du travail ne nuit pas à la santé mentale. Laquelle de ces situations est un danger psychosocial ?</p>
-                                    <button class="btn btn-outline-dark w-100 mb-2 text-start small" onclick="feedback(1, false)">A) Une fissure dans le plancher</button>
-                                    <button class="btn btn-outline-dark w-100 mb-2 text-start small" onclick="feedback(1, true)">B) Des objectifs irréalistes sans soutien</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="stepPaywall" class="step-content d-none text-center py-4">
-                            <div class="mb-4">
-                                <i class="bi bi-lock-fill text-primary" style="font-size: 3rem;"></i>
-                                <h2 class="fw-bold">Contenu réservé aux membres</h2>
-                                <p class="text-muted">Débloquez les 5 modules, les quiz et les certificats officiels pour toute votre équipe.</p>
-                            </div>
-                            <div class="bg-white p-4 rounded-4 border border-primary shadow-sm d-inline-block w-100" style="max-width: 450px;">
-                                <h3 class="fw-bold mb-1">Forfait PME Sentinelle</h3>
-                                <p class="display-5 fw-bold text-primary mb-2">19,99 $<small class="text-muted fs-6">/ mois</small></p>
-                                <ul class="text-start small mb-4">
-                                    <li><i class="bi bi-check text-success"></i> Accès illimité pour tous les employés</li>
-                                    <li><i class="bi bi-check text-success"></i> Certificats de conformité CNESST</li>
-                                    <li><i class="bi bi-check text-success"></i> Preuve de diligence raisonnable</li>
-                                </ul>
-                                <a href="https://buy.stripe.com/00wbJ2g5I2S39Qs3Xwd7q03" class="btn btn-primary btn-lg w-100 rounded-pill shadow">S'abonner et Débloquer</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="certificat-zone" class="d-none mt-5 text-center">
-                    <div class="certificate-container p-5 mx-auto" id="cert-print" style="max-width: 800px;">
-                        <h1 class="text-primary fw-bold" style="font-family: serif; font-size: 3.5rem;">CERTIFICAT</h1>
-                        <p class="h4 text-uppercase tracking-widest">Santé et Sécurité au Travail</p>
-                        <div class="my-5">
-                            <p class="mb-0">Ce document atteste que</p>
-                            <h2 id="cert-user-name" class="fw-bold border-bottom d-inline-block px-5 mt-2" style="font-style: italic;">[Nom]</h2>
-                        </div>
-                        <p>a complété avec succès le module de formation</p>
-                        <h4 class="fw-bold">CONFORMITÉ LMRSST : GESTION DES RISQUES PSYCHOSOCIAUX</h4>
-                        <div class="row mt-5">
-                            <div class="col-4 border-top pt-2 small text-start">DATE : <span id="cert-date"></span></div>
-                            <div class="col-4"><i class="bi bi-shield-check text-primary fs-1"></i></div>
-                            <div class="col-4 border-top pt-2 small text-end">ID : <span id="cert-id"></span></div>
-                        </div>
-                    </div>
-                    <button class="btn btn-dark btn-lg rounded-pill mt-4 px-5" onclick="window.print()"><i class="bi bi-printer me-2"></i> Imprimer mon certificat</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-5 bg-white border-top">
-            <div class="container py-4">
-                <h2 class="fw-bold text-center mb-5">Questions Fréquentes (FAQ)</h2>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="accordion accordion-flush shadow-sm" id="faqLoi">
-                            <div class="accordion-item border rounded mb-2">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#f1">Est-ce que Forfeo remplace un avocat ?</button></h2>
-                                <div id="f1" class="accordion-collapse collapse" data-bs-parent="#faqLoi"><div class="accordion-body text-muted">Non, Forfeo est un outil de gestion et de formation. Il aide à remplir l'obligation de prévention, mais pour des litiges spécifiques, consultez un avocat spécialisé en droit du travail.</div></div>
-                            </div>
-                            <div class="accordion-item border rounded mb-2">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#f2">Pourquoi un abonnement mensuel ?</button></h2>
-                                <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faqLoi"><div class="accordion-body text-muted">La conformité SST est une obligation continue. Forfeo met à jour ses modules selon les nouveaux décrets et archive vos preuves de formation en temps réel.</div></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="text-center py-5 bg-white border-top">
-            <div class="container">
-                <p class="fw-bold mb-1">&copy; 2025 FORFEO LAB</p>
-                <p class="text-muted small">Solution de conformité technologique pour entreprises québécoises.</p>
-                <div class="small mt-3">
-                    <a href="#" class="text-muted text-decoration-none mx-2">Confidentialité</a>
-                    <a href="#" class="text-muted text-decoration-none mx-2">Conditions Stripe</a>
+                <p class="mb-2 fw-semibold text-dark">&copy; 2025 FORFEO LAB</p>
+                <div class="small text-muted mb-3">Solution de conformité technologique pour entreprises québécoises.</div>
+                <div class="small text-muted">
+                    <a href="legal.html" class="text-decoration-none text-muted me-3">Mentions Légales</a>
+                    <a href="#" class="text-decoration-none text-muted">Confidentialité</a>
+                    <a href="#" class="text-decoration-none text-muted ms-3">Conditions Stripe</a>
                 </div>
             </div>
         </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // --- 1. COMPTE À REBOURS ---
+        // NAVIGATION ENTRE ONGLES
+        function showTab(id) {
+            var triggerEl = document.querySelector('#' + (id === 'tab-loi27' ? 'loi27-tab' : 'ambassadeur-tab'));
+            bootstrap.Tab.getInstance(triggerEl).show();
+            window.scrollTo(0,0);
+        }
+
+        // COMPTE À REBOURS
         function updateCountdown() {
             const target = new Date("October 1, 2025 00:00:00").getTime();
             const now = new Date().getTime();
             const gap = target - now;
-            if(gap <= 0) { document.getElementById("countdown").innerText = "URGENCE : DÉLAI DÉPASSÉ"; return; }
             const d = Math.floor(gap / (1000 * 60 * 60 * 24));
             const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
@@ -281,60 +279,36 @@
         setInterval(updateCountdown, 60000);
         updateCountdown();
 
-        // --- 2. DIAGNOSTIC ---
-        function traiterEtAfficher() {
-            const name = document.getElementById('user_name').value;
-            const email = document.getElementById('user_email').value;
-            const consent = document.getElementById('consentement_loi25').checked;
-
-            if(!name || !email || !consent) { alert("Veuillez remplir vos informations et accepter la Loi 25."); return; }
-
-            let pts = 0;
-            if(document.getElementById('rps_1').checked) pts++;
-            if(document.getElementById('rps_2').checked) pts++;
-            const score = (pts / 2) * 100;
-
-            document.getElementById('scoreFinal').innerText = score + "%";
-            document.getElementById('txtDiagnostic').innerText = (score < 100) ? 
-                "Votre dossier présente des lacunes critiques. La CNESST pourrait exiger des mesures correctives immédiates." : 
-                "Structure de base conforme. Le passage à la formation des employés est la prochaine étape recommandée.";
-            document.getElementById('resultContainer').classList.remove('d-none');
-        }
-
-        function exporterPDF() {
+        // GÉNÉRATION DE PDF FONCTIONNELLE
+        function generatePDF() {
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
-            doc.setFontSize(22); doc.text("BILAN DE CONFORMITÉ LOI 27", 20, 30);
-            doc.setFontSize(14); doc.text(`Entreprise : ${document.getElementById('user_name').value}`, 20, 50);
-            doc.text(`Indice de préparation : ${document.getElementById('scoreFinal').innerText}`, 20, 60);
-            doc.text("Prochaine étape : Activation du forfait Forfeo Sentinelle SST.", 20, 80);
-            doc.save("Diagnostic_Forfeo.pdf");
-        }
+            const name = document.getElementById('pdf_name').value || "Utilisateur Forfeo";
+            const c1 = document.getElementById('check1').checked ? "CONFORME" : "À RÉVISER";
+            const c2 = document.getElementById('check2').checked ? "CONFORME" : "À RÉVISER";
 
-        // --- 3. FORMATION ---
-        function feedback(step, isCorrect) {
-            if(isCorrect) {
-                document.getElementById(`step${step}`).classList.add('d-none');
-                document.getElementById('stepPaywall').classList.remove('d-none');
-                document.getElementById('progressionBarre').style.width = "100%";
-            } else {
-                alert("Incorrect. La Loi 27 impose une gestion active des facteurs organisationnels.");
-            }
-        }
+            doc.setFontSize(22);
+            doc.setTextColor(37, 99, 235);
+            doc.text("DIAGNOSTIC DE CONFORMITÉ LOI 27", 20, 30);
+            
+            doc.setFontSize(14);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Pris en charge pour : ${name}`, 20, 50);
+            doc.text(`Date : ${new Date().toLocaleDateString()}`, 20, 60);
+            
+            doc.line(20, 65, 190, 65);
+            
+            doc.text("1. Identification des risques :", 20, 80);
+            doc.text(c1, 150, 80);
+            
+            doc.text("2. Formation des gestionnaires :", 20, 95);
+            doc.text(c2, 150, 95);
+            
+            doc.setFontSize(10);
+            doc.text("Ce rapport est un outil de diagnostic préliminaire généré par FORFEO LAB.", 20, 130);
+            doc.text("Veuillez consulter notre plateforme complète pour valider votre conformité.", 20, 137);
 
-        // --- 4. SUCCÈS STRIPE ---
-        window.onload = function() {
-            const params = new URLSearchParams(window.location.search);
-            if (params.get('status') === 'success') {
-                document.getElementById('formation-interactive').scrollIntoView();
-                document.getElementById('formationBox').classList.add('d-none');
-                document.getElementById('certificat-zone').classList.remove('d-none');
-                document.getElementById('cert-user-name').innerText = "Client Privilégié Forfeo";
-                document.getElementById('cert-date').innerText = new Date().toLocaleDateString('fr-CA');
-                document.getElementById('cert-id').innerText = "FF-" + Math.random().toString(36).substr(2, 8).toUpperCase();
-                document.getElementById('top-banner').classList.replace('bg-danger', 'bg-success');
-                document.getElementById('top-banner').innerHTML = "<strong>Félicitations !</strong> Votre entreprise est maintenant protégée par le bouclier Forfeo.";
-            }
+            doc.save(`Diagnostic_Forfeo_${name}.pdf`);
         }
     </script>
 </body>
